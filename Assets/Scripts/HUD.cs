@@ -19,11 +19,6 @@ public class HUD : MonoBehaviour
         }
     }
 
-    private void Start() {
-        ExpHandler(20);
-        ExpHandler(25);
-    }
-
     public void ExpHandler( float points = 10 ) {
         if(xp.value == xp.maxValue) {
             PowerUpScreem.SetActive(true);
