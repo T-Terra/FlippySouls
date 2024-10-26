@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4447e22fb15fbdb4e9735e05a6bdf032, type: 3}
+  m_Name: imaLv2
+  m_EditorClassIdentifier: 
+  ID: 9
+  spriteRender: {fileID: 0}
+  bibleTotal: 0
+  hadoukenTime: 0
+  darkPowerArea: 0
+  timeShield: 0
+  ShieldInterval: 0
