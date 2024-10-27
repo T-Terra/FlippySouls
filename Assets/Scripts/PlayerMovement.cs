@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool is_jumping = false;
 
+    private Material originalMaterial;
+    public Material whiteMaterial;
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -114,6 +117,18 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ChangeToWhiteTemporarily(float duration)
+    {
+        StartCoroutine(WhiteEffect(duration));
+    }
+
+    private IEnumerator WhiteEffect(float duration)
+    {
+        gameObject.GetComponent<SpriteRenderer>().material = whiteMaterial;
+        yield return new WaitForSeconds(duration);
+        gameObject.GetComponent<SpriteRenderer>().material = originalMaterial;
     }
 
 }

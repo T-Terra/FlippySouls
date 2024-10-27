@@ -27,7 +27,8 @@ public class Enemies : MonoBehaviour
     private bool flipped = false;*/
     bool death = false;
 
-
+    private Material originalMaterial;
+    public Material whiteMaterial;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -177,6 +178,18 @@ public class Enemies : MonoBehaviour
         // Destruir o inimigo
         Destroy(gameObject);
         Debug.Log("Inimigo destruído."); // Log para confirmar que o inimigo foi destruído
+    }
+
+    public void ChangeToWhiteTemporarily(float duration)
+    {
+        StartCoroutine(WhiteEffect(duration));
+    }
+
+    private IEnumerator WhiteEffect(float duration)
+    {
+        gameObject.GetComponent<SpriteRenderer>().material = whiteMaterial;
+        yield return new WaitForSeconds(duration);
+        gameObject.GetComponent<SpriteRenderer>().material = originalMaterial;
     }
 
 }

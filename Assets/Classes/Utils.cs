@@ -5,23 +5,16 @@ public static class UtilsFunc
 {
     public static void TakeDamage(GameObject target, float damage)
     {
-        Stats stats = null;
-
-        if (target.CompareTag("Player"))
-        {
-            stats = target.GetComponent<PlayerMovement>().stats;
-        }
-        else
-        {
-            stats = target.GetComponent<Enemies>().stats;
-        }
-
-        Debug.Log($"Target: {target.name}, Damage: {damage}, hp: {stats.hp}");
+        Stats stats = target.CompareTag("Player") ? target.GetComponent<PlayerMovement>().stats : target.GetComponent<Enemies>().stats;
 
         if (stats != null)
         {
             stats.hp -= damage;
-            Debug.Log($"New HP: {stats.hp}");
+            Debug.Log($"Target: {target.name}, Damage: {damage}, New HP: {stats.hp}");
+
+            // Troca a cor temporariamente
+          //  target.GetComponent<SpriteRenderer>().color = Color.white;
+         //   target.GetComponent<Enemies>().ChangeToWhiteTemporarily(0.1f);
         }
         else
         {
