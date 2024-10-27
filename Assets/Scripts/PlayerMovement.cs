@@ -58,12 +58,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier")
+        if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier" && collision.gameObject.tag != "Soul")
         {
             if (is_jumping)
             {
-
                 Stats enemyStats = collision.gameObject.GetComponent<Enemies>().stats;
                 UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
 
@@ -80,9 +78,37 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-        }else if (collision.gameObject.CompareTag("Barrier"))
+        }
+        else if (collision.gameObject.CompareTag("Barrier"))
         {
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier" && collision.gameObject.tag != "Soul")
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && is_jumping)
+            {
+                Stats enemyStats = collision.gameObject.GetComponent<Enemies>().stats;
+
+                // Aplica dano ao inimigo
+                UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
+                Debug.Log($"Dano aplicado ao inimigo: {stats.baseAttack}. HP do inimigo: {enemyStats.hp}");
+
+                // Verifica se o inimigo morreu
+                if (enemyStats.hp <= 0)
+                {
+                    // Regenera a vida do jogador se o HP estiver abaixo do máximo
+                    if (stats.hp < stats.maxHP)
+                    {
+                        stats.hp += 1;  // Adicionei um log aqui para verificar a cura
+                        Debug.Log($"Jogador curado! Novo HP: {stats.hp}");
+                    }
+                }
+            }
+        }
+    }
+
 }

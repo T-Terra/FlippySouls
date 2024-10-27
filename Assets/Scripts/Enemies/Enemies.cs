@@ -25,6 +25,7 @@ public class Enemies : MonoBehaviour
 
     private bool flip = false;
     private bool flipped = false;
+    bool death = false;
 
 
     void Start()
@@ -44,7 +45,7 @@ public class Enemies : MonoBehaviour
 
                 if (gameObject.CompareTag("Tank"))
                 {
-                    stats.maxHP = playerStats.baseAttack * 2;
+                    stats.maxHP = (playerStats.baseAttack * 2) - 1;
                 }
             }
             else
@@ -76,52 +77,56 @@ public class Enemies : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Define o movimento do inimigo com base na sua tag
-        switch (gameObject.tag)
+        if (!death)
         {
-            case "Medusa":
-                float range = 3f; // Amplitude do zig-zag
-                float zigZagFrequency = 3f; // Frequência fixa do zig-zag
-                float zigZagMoviment = Mathf.Sin(Time.time * zigZagFrequency) * range;
+            switch (gameObject.tag)
+            {
+                case "Medusa":
+                    float range = 3f; // Amplitude do zig-zag
+                    float zigZagFrequency = 3f; // Frequência fixa do zig-zag
+                    float zigZagMoviment = Mathf.Sin(Time.time * zigZagFrequency) * range;
 
-                rb.velocity = new Vector2(-stats.speed, zigZagMoviment);
-                break;
+                    rb.velocity = new Vector2(-stats.speed, zigZagMoviment);
+                    break;
 
-            case "Pumpking":
-                rb.velocity = new Vector2(-stats.speed, 0);
-                if (canAttack)
-                {
-                    Vector2 spawnPosition = new Vector2(transform.position.x - 1, transform.position.y);
-                    GameObject spell = Instantiate(projectile, spawnPosition, Quaternion.identity);
+                case "Pumpking":
+                    rb.velocity = new Vector2(-stats.speed, 0);
+                    if (canAttack)
+                    {
+                        Vector2 spawnPosition = new Vector2(transform.position.x - 1, transform.position.y);
+                        GameObject spell = Instantiate(projectile, spawnPosition, Quaternion.identity);
 
-                    SpellScript spellScript = spell.GetComponent<SpellScript>();
-                    spellScript.speed = stats.speed * 3;
-                    spellScript.damage = stats.baseAttack;
+                        SpellScript spellScript = spell.GetComponent<SpellScript>();
+                        spellScript.speed = stats.speed * 3;
+                        spellScript.damage = stats.baseAttack;
 
-                    time = 0f;
-                }
-                break;
+                        time = 0f;
+                    }
+                    break;
 
-            case "Stalker":
-                rb.velocity = direction;
-                break;
+                case "Stalker":
+                    rb.velocity = direction;
+                    break;
 
-            default:
-                if (flip && !flipped)
-                {
-                    SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-                    spriteRenderer.flipX = true;
-                    stats.speed -= 1;
-                    flipped = true;
-                }
-                rb.velocity = new Vector2(-stats.speed, 0);
-                break;
+                default:
+                    if (flip && !flipped)
+                    {
+                        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = true;
+                        stats.speed -= stats.speed * 0.7f;
+                        flipped = true;
+                    }
+                    rb.velocity = new Vector2(-stats.speed, 0);
+                    break;
+            }
         }
 
         if (stats.hp <= 0)
         {
-            Destroy(gameObject);
-            //DeathSequence();
+            if (!death)
+            {
+                StartCoroutine(DeathSequence());
+            }
         }
 
         //Verificação de cooldown
@@ -135,7 +140,7 @@ public class Enemies : MonoBehaviour
             canAttack = true;
         }
 
-        if (time > 5f && !flipped)
+        if (time > 1f && !flipped)
         {
             flip = true;
         }
@@ -144,25 +149,33 @@ public class Enemies : MonoBehaviour
 
     IEnumerator DeathSequence()
     {
+        death = true;  // Marque que o inimigo está em processo de morte
         Debug.Log("morreu");
-        Vector2 retreatPosition = transform.position - new Vector3(0.5f, 0); // Ajuste o valor para recuar mais ou menos
-        float retreatTime = 0.2f; // Tempo de recuo
 
+        float retreatTime = 0.5f;
         float elapsedTime = 0;
+
+        // Recuo do inimigo para a direita
         while (elapsedTime < retreatTime)
         {
-            transform.position = Vector2.Lerp(transform.position, retreatPosition, elapsedTime / retreatTime);
+            rb.velocity = new Vector2(5f, 0); // Aplique um recuo para a direita
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        // Pare o movimento após o recuo
+        rb.velocity = Vector2.zero;
 
         // Drop do item
         if (soul)
         {
             Instantiate(soul, transform.position, Quaternion.identity);
+            Debug.Log("Item dropado."); // Log para confirmar que o item foi dropado
         }
 
         // Destruir o inimigo
         Destroy(gameObject);
+        Debug.Log("Inimigo destruído."); // Log para confirmar que o inimigo foi destruído
     }
+
 }

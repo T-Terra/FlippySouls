@@ -15,7 +15,7 @@ public class SoulScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController player = gameObject.GetComponent<PlayerController>();
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.stats.souls += 1;
           //  hud.SoulsHandler(player.stats.souls);
             Destroy(gameObject);
