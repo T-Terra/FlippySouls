@@ -39,7 +39,7 @@ public class HUD : MonoBehaviour
         xp.value += points;
     }
 
-    public void HpHandler( float time = 4 ) {
+    public void HpHandler( float time = 8 ) {
         hp.value -= Time.deltaTime * time;
         player.GetComponent<PlayerMovement>().stats.hp = hp.value;
         if(hp.value == hp.minValue) {
@@ -57,7 +57,7 @@ public class HUD : MonoBehaviour
     }
 
     public void HpAdd( float newHp ) {
-        hp.value += newHp;
+        hp.value = newHp;
     }
 
     public void MetersHandler( int RateMeters = 10 ) {
