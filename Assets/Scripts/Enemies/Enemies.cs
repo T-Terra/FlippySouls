@@ -40,7 +40,7 @@ public class Enemies : MonoBehaviour
             {
                 target = player.transform.position;
                 direction = ((target - (Vector2)transform.position).normalized) * stats.speed;
-                playerStats = player.GetComponent<PlayerController>().stats;
+                playerStats = player.GetComponent<PlayerMovement>().stats;
 
                 if (gameObject.CompareTag("Tank"))
                 {
@@ -61,7 +61,7 @@ public class Enemies : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Stats playerStats = collision.gameObject.GetComponent<Stats>();
+            Stats playerStats = collision.gameObject.GetComponent<PlayerMovement>().stats;
             if (!playerStats.invincible)
             {
                 playerStats.hp -= stats.baseAttack;
@@ -107,8 +107,6 @@ public class Enemies : MonoBehaviour
                 break;
 
             default:
-                Debug.Log("Default");
-                Debug.Log(time);
                 if (flip && !flipped)
                 {
                     SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -122,7 +120,8 @@ public class Enemies : MonoBehaviour
 
         if (stats.hp <= 0)
         {
-            DeathSequence();
+            Destroy(gameObject);
+            //DeathSequence();
         }
 
         //Verificação de cooldown
@@ -145,6 +144,7 @@ public class Enemies : MonoBehaviour
 
     IEnumerator DeathSequence()
     {
+        Debug.Log("morreu");
         Vector2 retreatPosition = transform.position - new Vector3(0.5f, 0); // Ajuste o valor para recuar mais ou menos
         float retreatTime = 0.2f; // Tempo de recuo
 

@@ -14,7 +14,7 @@ public class Stats
     public float speed = 0;
     public bool invincible = false;
 
-    public int souls = 0;
+    public float souls = 0;
 
     public float xp = 0;
     public float maxXp = 0;

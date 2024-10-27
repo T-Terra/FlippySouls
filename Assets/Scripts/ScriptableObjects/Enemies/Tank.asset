@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Tank
   stats:
-    maxHP: 10
-    hp: 0
+    maxHP: 2
+    hp: 10
     baseAttack: 1
     attackSpeed: 0
     criticalChance: 0
     criticalPercent: 0
     speed: 2
     invincible: 0
+    souls: 0
     xp: 0
     maxXp: 0
     level: 0
