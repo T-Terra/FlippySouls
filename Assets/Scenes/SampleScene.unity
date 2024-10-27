@@ -677,9 +677,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 597845b699677c94cb466093925e7516, type: 2}
   - {fileID: 11400000, guid: bf243203bbdac154889d630a8ee75a8c, type: 2}
   - {fileID: 11400000, guid: 10139494dc7cd35479be12530e662abd, type: 2}
-  cooldown: 3
+  cooldown: 2
   minCooldown: 1
-  range: 10
+  range: 2
 --- !u!4 &303706169
 Transform:
   m_ObjectHideFlags: 0

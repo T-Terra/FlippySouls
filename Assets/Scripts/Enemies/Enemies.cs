@@ -23,8 +23,8 @@ public class Enemies : MonoBehaviour
     private float time = 0f;
     private bool canAttack = false;
 
-    /*private bool flip = false;*/
-    private bool flipped = false;
+    /*private bool flip = false;
+    private bool flipped = false;*/
     bool death = false;
 
 
