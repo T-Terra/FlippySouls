@@ -75,9 +75,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (stats.hp < stats.maxHP)
                     {
-                        stats.hp += 5;
+                        stats.hp += 10;
                         HUD.Instance.HpAdd(stats.hp);
-                        HUD.Instance.ExpHandler(enemyStats.xp);
+                      //  HUD.Instance.ExpHandler(enemyStats.xp);
+
                     }
                     else if (stats.hp > stats.maxHP)
                     {
@@ -111,9 +112,9 @@ public class PlayerMovement : MonoBehaviour
                     // Regenera a vida do jogador se o HP estiver abaixo do máximo
                     if (stats.hp < stats.maxHP)
                     {
-                        stats.hp += 5;  // Adicionei um log aqui para verificar a cura
+                        stats.hp += 10;  // Adicionei um log aqui para verificar a cura
                         HUD.Instance.HpAdd(stats.hp);
-                        HUD.Instance.ExpHandler(enemyStats.xp);
+                       // HUD.Instance.ExpHandler(enemyStats.xp);
                         Debug.Log($"Jogador curado! Novo HP: {stats.hp}");
                     }
                 }

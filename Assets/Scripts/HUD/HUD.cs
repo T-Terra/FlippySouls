@@ -39,7 +39,7 @@ public class HUD : MonoBehaviour
         xp.value += points;
     }
 
-    public void HpHandler( float time = 8 ) {
+    public void HpHandler( float time = 6 ) {
         hp.value -= Time.deltaTime * time;
         if(hp.value == hp.minValue) {
             Time.timeScale = 0;
@@ -70,7 +70,7 @@ public class HUD : MonoBehaviour
         metersDistance.text = (meters).ToString("F0") + "M";
     }
 
-    public void SoulsHandler( int soulsColleted = 0) {
+    public void SoulsHandler( float soulsColleted = 0) {
         souls.text = soulsColleted.ToString();
     }
 }
