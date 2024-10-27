@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Default
   stats:
-    maxHP: 5
+    maxHP: 1
     hp: 5
     baseAttack: 1
     attackSpeed: 5

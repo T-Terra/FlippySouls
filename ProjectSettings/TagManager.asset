@@ -9,6 +9,8 @@ TagManager:
   - Stalker
   - Tank
   - Medusa
+  - Background
+  - Spell
   layers:
   - Default
   - TransparentFX
