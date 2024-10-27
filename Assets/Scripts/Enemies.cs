@@ -11,6 +11,7 @@ public class Enemies : MonoBehaviour
     public Stats stats;
     public GameObject projectile;
     public GameObject soul;
+    public Enemy[] enemyDataList;
 
     private GameObject player;
     private Stats playerStats;
@@ -24,7 +25,6 @@ public class Enemies : MonoBehaviour
 
     void Start()
     {
-        loadEnemy()
         rb = GetComponent<Rigidbody2D>();
         startYPosition = transform.position.y;
         time = 0f;
@@ -123,11 +123,6 @@ public class Enemies : MonoBehaviour
         {
             canAttack = true;
         }
-
-    }
-
-    void loadEnemy()
-    {
 
     }
 }

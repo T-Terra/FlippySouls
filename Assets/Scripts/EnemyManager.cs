@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public GameObject enemyBase;
-    public string[] listEnemies = { "Pumpking", "Stalker", "Medusa", "Tank", "Default" };
+    public Enemy[] listEnemies = null;
     private float playTime = 0f;
     private float timer = 0f;
     public float cooldown = 5f;
@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
 
     void Spawn()
     {
-        string enemyTag = listEnemies[Random.Range(0, listEnemies.Length)];
+        Enemy enemyData = listEnemies[Random.Range(0, listEnemies.Length)];
 
         Camera mainCamera = Camera.main;
         float screenWidth = mainCamera.orthographicSize * mainCamera.aspect * 2;
@@ -48,12 +48,14 @@ public class EnemyManager : MonoBehaviour
         Vector2 spawnPosition = new Vector2(screenWidth / 2 + 2, randomY);
 
         GameObject enemy = Instantiate(enemyBase, spawnPosition, Quaternion.identity);
-        if(enemyTag != "Default") 
+        if(enemyData != null) 
         { 
-            enemy.tag = enemyTag;
+            enemy.GetComponent<Enemies>().stats = enemyData.stats;
+            enemy.GetComponent<SpriteRenderer>().sprite = enemyData.sprite;
+            enemy.tag = enemyData.id;
         }
 
-        Debug.Log("Nasceu: " + enemyTag);
+        Debug.Log("Nasceu: " + enemyData.id);
     }
 
 }

@@ -1875,11 +1875,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBase: {fileID: 2868796375249335824, guid: 2758a5c82c0e16f4598a1aa69d5b5da1, type: 3}
   listEnemies:
-  - Pumpking
-  - Stalker
-  - Medusa
-  - Tank
-  - Default
+  - {fileID: 11400000, guid: 1b2af8f46b1e27c43bfa15fa1d4c2a96, type: 2}
+  - {fileID: 11400000, guid: 70bb1742cc88374438246f9f85584c70, type: 2}
+  - {fileID: 11400000, guid: 597845b699677c94cb466093925e7516, type: 2}
+  - {fileID: 11400000, guid: bf243203bbdac154889d630a8ee75a8c, type: 2}
+  - {fileID: 11400000, guid: 10139494dc7cd35479be12530e662abd, type: 2}
   cooldown: 5
   minCooldown: 1
   range: 60
