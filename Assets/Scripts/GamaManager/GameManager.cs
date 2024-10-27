@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
+    public GameObject PauseScreen;
     private void Awake() {
         if(Instance != null) {
             Destroy(gameObject);
@@ -15,11 +16,20 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            Time.timeScale = 0;
+            PauseScreen.SetActive(true);
+        }
         HUD.Instance.MetersHandler();
         HUD.Instance.HpHandler();
     }
 
     public void RestartGame() {
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+    }
+
+    public void ResumeGame() {
+        PauseScreen.SetActive(false);
+        Time.timeScale = 1;
     }
 }
