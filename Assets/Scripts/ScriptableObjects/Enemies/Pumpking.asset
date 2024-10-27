@@ -16,7 +16,7 @@ MonoBehaviour:
   stats:
     maxHP: 1
     hp: 5
-    baseAttack: 1
+    baseAttack: 10
     attackSpeed: 2
     criticalChance: 0
     criticalPercent: 0

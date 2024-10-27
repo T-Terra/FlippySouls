@@ -15,6 +15,7 @@ public class HUD : MonoBehaviour
     public GameObject ResultsScreen;
     public TMP_Text metersDistanceResults;
     public TMP_Text metersHighResults;
+    private GameObject player;
 
     private void Awake() {
         if(Instance != null) {
@@ -26,6 +27,7 @@ public class HUD : MonoBehaviour
 
     private void Start() {
         metersHighResults.text = PlayerPrefs.GetFloat("high").ToString("F0");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void ExpHandler( float points = 10 ) {
@@ -39,6 +41,7 @@ public class HUD : MonoBehaviour
 
     public void HpHandler( float time = 4 ) {
         hp.value -= Time.deltaTime * time;
+        player.GetComponent<PlayerMovement>().stats.hp = hp.value;
         if(hp.value == hp.minValue) {
             Time.timeScale = 0;
             ResultsScreen.SetActive(true);
@@ -51,6 +54,10 @@ public class HUD : MonoBehaviour
                 PlayerPrefs.SetFloat("high", meters);
             }
         }
+    }
+
+    public void HpAdd( float newHp ) {
+        hp.value += newHp;
     }
 
     public void MetersHandler( int RateMeters = 10 ) {
