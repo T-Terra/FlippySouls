@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         stats.hp += 20;
                         HUD.Instance.HpAdd(stats.hp);
+                        HUD.Instance.ExpHandler(enemyStats.xp);
                     }
                     else if (stats.hp > stats.maxHP)
                     {
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         stats.hp += 20;  // Adicionei um log aqui para verificar a cura
                         HUD.Instance.HpAdd(stats.hp);
+                        HUD.Instance.ExpHandler(enemyStats.xp);
                         Debug.Log($"Jogador curado! Novo HP: {stats.hp}");
                     }
                 }
