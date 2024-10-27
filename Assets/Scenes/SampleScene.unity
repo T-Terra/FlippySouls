@@ -2839,8 +2839,8 @@ MonoBehaviour:
   xp: {fileID: 1239607283}
   souls: {fileID: 0}
   metersDistance: {fileID: 1079108623}
-  PowerUpScreem: {fileID: 123824611}
-  ResultsScreem: {fileID: 1088296853}
+  PowerUpScreen: {fileID: 123824611}
+  ResultsScreen: {fileID: 1088296853}
   metersDistanceResults: {fileID: 784263885}
   metersHighResults: {fileID: 328802137}
 --- !u!1 &1396029433
@@ -3071,7 +3071,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 550977521}
   - {fileID: 392267634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
