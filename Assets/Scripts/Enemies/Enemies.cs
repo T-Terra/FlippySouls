@@ -107,7 +107,6 @@ public class Enemies : MonoBehaviour
                 break;
         }
 
-        //Verificação de vida
         if (stats.hp <= 0)
         {
             if (soul)
