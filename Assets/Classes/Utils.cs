@@ -10,6 +10,7 @@ public static class UtilsFunc
         if (stats != null)
         {
             stats.hp -= damage;
+            HUD.Instance.HpRemove(stats.hp);
             Debug.Log($"Target: {target.name}, Damage: {damage}, New HP: {stats.hp}");
 
             // Troca a cor temporariamente

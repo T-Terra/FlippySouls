@@ -41,7 +41,6 @@ public class HUD : MonoBehaviour
 
     public void HpHandler( float time = 8 ) {
         hp.value -= Time.deltaTime * time;
-        player.GetComponent<PlayerMovement>().stats.hp = hp.value;
         if(hp.value == hp.minValue) {
             Time.timeScale = 0;
             ResultsScreen.SetActive(true);
@@ -53,10 +52,16 @@ public class HUD : MonoBehaviour
             } else if (PlayerPrefs.GetFloat("high") < meters) {
                 PlayerPrefs.SetFloat("high", meters);
             }
+        } else {
+            player.GetComponent<PlayerMovement>().stats.hp = hp.value;
         }
     }
 
     public void HpAdd( float newHp ) {
+        hp.value = newHp;
+    }
+
+    public void HpRemove( float newHp ) {
         hp.value = newHp;
     }
 
