@@ -20,4 +20,8 @@ public class Stats
     public float maxXp = 0;
     public float level = 0;
 
+    public Stats Clone()
+    {
+        return (Stats)this.MemberwiseClone(); // Cria uma cópia rasa da classe Stats
+    }
 }

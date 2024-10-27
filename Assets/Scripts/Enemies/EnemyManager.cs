@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -38,35 +39,46 @@ public class EnemyManager : MonoBehaviour
 
     void Spawn()
     {
-        Enemy enemyData = listEnemies[Random.Range(0, listEnemies.Length)];
+        int qntSpawn = Random.Range(1, 3);
 
         Camera mainCamera = Camera.main;
         float screenWidth = mainCamera.orthographicSize * mainCamera.aspect * 2;
         float screenHeight = mainCamera.orthographicSize * 2;
 
-        float randomY;
-        if (enemyData.id == "Medusa")
+        // Chama a coroutine para spawnar inimigos
+        StartCoroutine(SpawnEnemies(qntSpawn, screenWidth, screenHeight));
+    }
+    IEnumerator SpawnEnemies(int qntSpawn, float screenWidth, float screenHeight)
+    {
+        for (int i = 0; i < qntSpawn; i++)
         {
-            randomY = Random.Range(-screenHeight / 2 +3, screenHeight / 2-3); 
-        }
-        else
-        {
-            randomY = Random.Range(-screenHeight / 2 + 1, screenHeight / 2 - 1);
-        }
-
-        Vector2 spawnPosition = new Vector2(screenWidth / 2 + 2, randomY);
-
-        GameObject enemy = Instantiate(enemyBase, spawnPosition, Quaternion.identity);
-        if (enemyData != null)
-        {
-            if (enemyData.id != "Default")
+            Enemy enemyData = listEnemies[Random.Range(0, listEnemies.Length)];
+            float randomY;
+            if (enemyData.id == "Medusa")
             {
-                enemy.tag = enemyData.id;
+                randomY = Random.Range(-screenHeight / 2 + 3, screenHeight / 2 - 3);
             }
-            enemy.GetComponent<Enemies>().stats = enemyData.stats;
-            enemy.GetComponent<SpriteRenderer>().sprite = enemyData.sprite;
+            else
+            {
+                randomY = Random.Range(-screenHeight / 2 + 0.5f, screenHeight / 2 - 1f);
+            }
+
+            Vector2 spawnPosition = new Vector2(screenWidth / 2 + 2, randomY);
+
+            GameObject enemy = Instantiate(enemyBase, spawnPosition, Quaternion.identity);
+            if (enemyData != null)
+            {
+                if (enemyData.id != "Default")
+                {
+                    enemy.tag = enemyData.id;
+                }
+
+                enemy.GetComponent<Enemies>().stats = enemyData.stats.Clone();
+                enemy.GetComponent<SpriteRenderer>().sprite = enemyData.sprite;
+            }
+
+            yield return new WaitForSeconds(0.5f); // Delay de 0.1 segundos entre cada spawn
         }
     }
-
 
 }

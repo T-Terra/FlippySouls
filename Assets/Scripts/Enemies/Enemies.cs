@@ -23,6 +23,10 @@ public class Enemies : MonoBehaviour
     private float time = 0f;
     private bool canAttack = false;
 
+    private bool flip = false;
+    private bool flipped = false;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -103,17 +107,22 @@ public class Enemies : MonoBehaviour
                 break;
 
             default:
+                Debug.Log("Default");
+                Debug.Log(time);
+                if (flip && !flipped)
+                {
+                    SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                    spriteRenderer.flipX = true;
+                    stats.speed -= 1;
+                    flipped = true;
+                }
                 rb.velocity = new Vector2(-stats.speed, 0);
                 break;
         }
 
         if (stats.hp <= 0)
         {
-            if (soul)
-            {
-                Instantiate(soul, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-            }
-            Destroy(gameObject);
+            DeathSequence();
         }
 
         //Verificação de cooldown
@@ -127,5 +136,33 @@ public class Enemies : MonoBehaviour
             canAttack = true;
         }
 
+        if (time > 5f && !flipped)
+        {
+            flip = true;
+        }
+
+    }
+
+    IEnumerator DeathSequence()
+    {
+        Vector2 retreatPosition = transform.position - new Vector3(0.5f, 0); // Ajuste o valor para recuar mais ou menos
+        float retreatTime = 0.2f; // Tempo de recuo
+
+        float elapsedTime = 0;
+        while (elapsedTime < retreatTime)
+        {
+            transform.position = Vector2.Lerp(transform.position, retreatPosition, elapsedTime / retreatTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Drop do item
+        if (soul)
+        {
+            Instantiate(soul, transform.position, Quaternion.identity);
+        }
+
+        // Destruir o inimigo
+        Destroy(gameObject);
     }
 }
