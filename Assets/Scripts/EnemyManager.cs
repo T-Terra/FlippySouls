@@ -26,7 +26,7 @@ public class EnemyManager : MonoBehaviour
         if (playTime > range)
         {
             playTime = 0f;
-            cooldown = Mathf.Max(cooldown * 0.95f , minCooldown);
+            cooldown = Mathf.Max(cooldown * 0.95f, minCooldown);
         }
 
         if (timer > cooldown)
@@ -44,18 +44,29 @@ public class EnemyManager : MonoBehaviour
         float screenWidth = mainCamera.orthographicSize * mainCamera.aspect * 2;
         float screenHeight = mainCamera.orthographicSize * 2;
 
-        float randomY = Random.Range(-screenHeight / 2 + 2, screenHeight / 2 -2);
+        float randomY;
+        if (enemyData.id == "Medusa")
+        {
+            randomY = Random.Range(-screenHeight / 2 +3, screenHeight / 2-3); 
+        }
+        else
+        {
+            randomY = Random.Range(-screenHeight / 2 + 1, screenHeight / 2 - 1);
+        }
+
         Vector2 spawnPosition = new Vector2(screenWidth / 2 + 2, randomY);
 
         GameObject enemy = Instantiate(enemyBase, spawnPosition, Quaternion.identity);
-        if(enemyData != null) 
-        { 
+        if (enemyData != null)
+        {
+            if (enemyData.id != "Default")
+            {
+                enemy.tag = enemyData.id;
+            }
             enemy.GetComponent<Enemies>().stats = enemyData.stats;
             enemy.GetComponent<SpriteRenderer>().sprite = enemyData.sprite;
-            enemy.tag = enemyData.id;
         }
-
-        Debug.Log("Nasceu: " + enemyData.id);
     }
+
 
 }

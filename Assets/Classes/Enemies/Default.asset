@@ -15,7 +15,7 @@ MonoBehaviour:
   id: Default
   stats:
     maxHP: 5
-    hp: 0
+    hp: 5
     baseAttack: 1
     attackSpeed: 0
     criticalChance: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
     xp: 0
     maxXp: 0
     level: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a4f8b4d27906e784c87536bc02481b72, type: 3}

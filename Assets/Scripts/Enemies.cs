@@ -45,7 +45,7 @@ public class Enemies : MonoBehaviour
             }
             else
             {
-                direction = new Vector2(-stats.speed, startYPosition);
+                direction = new Vector2(-stats.speed, 0);
             }
         }
 
@@ -76,8 +76,10 @@ public class Enemies : MonoBehaviour
         switch (gameObject.tag)
         {
             case "Medusa":
-                float range = 3f;
-                float zigZagMoviment = startYPosition + Mathf.Sin(Time.time * (3 + (stats.speed * 0.1f))) * range;
+                float range = 3f; // Amplitude do zig-zag
+                float zigZagFrequency = 3f; // Frequência fixa do zig-zag
+                float zigZagMoviment = Mathf.Sin(Time.time * zigZagFrequency) * range;
+
                 rb.velocity = new Vector2(-stats.speed, zigZagMoviment);
                 break;
 
@@ -87,9 +89,11 @@ public class Enemies : MonoBehaviour
                 {
                     Vector2 spawnPosition = new Vector2(transform.position.x - 1, transform.position.y);
                     GameObject spell = Instantiate(projectile, spawnPosition, Quaternion.identity);
+
                     SpellScript spellScript = spell.GetComponent<SpellScript>();
                     spellScript.speed = stats.speed * 3;
                     spellScript.damage = stats.baseAttack;
+
                     time = 0f;
                 }
                 break;

@@ -17,7 +17,7 @@ public class SpellScript : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = new Vector2(- speed, transform.position.y);
+        rb.velocity = new Vector2(- speed, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

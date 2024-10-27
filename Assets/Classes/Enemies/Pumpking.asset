@@ -25,4 +25,4 @@ MonoBehaviour:
     xp: 0
     maxXp: 0
     level: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 6d36822cb6e25a24baabf97b9dfbfe26, type: 3}
