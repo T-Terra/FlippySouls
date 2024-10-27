@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: b6756a6e07ae53744be63f90c7c8b0a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fb6710dbb7406f4a9551f8b1d83fab2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,4 +132,4 @@ MonoBehaviour:
   background_: {fileID: 7460647665949981129}
   speed: 3.3
   countdown: 0
-  numerator: 500
+  numerator: 1000
