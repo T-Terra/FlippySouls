@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-
+        Spawn();
     }
 
     private void FixedUpdate()

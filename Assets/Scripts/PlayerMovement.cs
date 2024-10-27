@@ -80,6 +80,9 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
+        }else if (collision.gameObject.CompareTag("Barrier"))
+        {
+            Destroy(gameObject);
         }
     }
 }
