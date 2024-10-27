@@ -1298,8 +1298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 212.64291, y: 0.000025749207}
-  m_SizeDelta: {x: 435.2861, y: -0}
+  m_AnchoredPosition: {x: 0.74176025, y: 0.000025749207}
+  m_SizeDelta: {x: 11.4936, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963024867
 MonoBehaviour:
@@ -1495,6 +1495,7 @@ MonoBehaviour:
   - {fileID: 8637689}
   - {fileID: 1740367317}
   - {fileID: 2111200125}
+  PowerUpScreem: {fileID: 123824611}
 --- !u!4 &1028634062
 Transform:
   m_ObjectHideFlags: 0
@@ -2263,7 +2264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7579191b645764a82befaff91266ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xp: {fileID: 1203982358}
+  xp: {fileID: 1239607283}
   souls: {fileID: 0}
   metersDistance: {fileID: 1079108623}
   PowerUpScreem: {fileID: 123824611}
@@ -2805,8 +2806,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.851868, y: -5.100109}
-  m_SizeDelta: {x: -434.4412, y: -61.7455}
+  m_AnchoredPosition: {x: -16.846, y: -5.100109}
+  m_SizeDelta: {x: -434.43, y: -61.7455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2111200125
 GameObject:

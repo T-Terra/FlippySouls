@@ -13,6 +13,8 @@ public class PowerUpManager : MonoBehaviour
     public List<PowerUpCards> PowerUpAttributesV2;
     public GameObject[] CardsPowerUp;
 
+    public GameObject PowerUpScreem;
+
     private int count = 0;
     private int SortNumPrevious = 0;
     private void Awake() {
@@ -21,12 +23,14 @@ public class PowerUpManager : MonoBehaviour
         } else {
             Instance = this;
         }
+
+        InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
+        
     }
 
     // Update is called once per frame
@@ -69,6 +73,8 @@ public class PowerUpManager : MonoBehaviour
 
     public void SelectPower( int Item ) {
         CleanList(PowerUpAttributes[Item]);
-        PowerUpAttributes.RemoveAt(Item);
+        PowerUpAttributes.Clear();
+        PowerUpScreem.SetActive(false);
+        Time.timeScale = 1;
     }
 }
