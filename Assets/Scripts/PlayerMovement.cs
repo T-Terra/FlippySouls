@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
+    public AudioSource JumpAudio;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && is_jumping == false)
         {
             Jump();
+            JumpAudio.Play();
         }
 
         if (stats.hp <= 0)

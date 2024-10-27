@@ -24,7 +24,7 @@ public class PowerUpManager : MonoBehaviour
             Instance = this;
         }
 
-        InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
+        //InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
     }
 
     // Start is called before the first frame update

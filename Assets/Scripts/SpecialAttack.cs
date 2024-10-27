@@ -17,6 +17,7 @@ public class SpecialAttack : MonoBehaviour
     private float timer = 0f;
     private bool is_tripled = false;
     private float t0 = 0f;
+    public AudioSource SpecialAudio;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class SpecialAttack : MonoBehaviour
         {
             t0 = timer;
             ActivateSpecialAttack();
+            SpecialAudio.Play();
         }
 
         // Desativa o especial quando o tempo limite é alcançado
