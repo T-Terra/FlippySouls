@@ -9,10 +9,12 @@ public class BackgroundMovement : MonoBehaviour
     public GameObject background_;
     public float speed;
     public float countdown;
+    public float numerator;
+    
     void FixedUpdate()
     {
         countdown += Time.deltaTime;
-        if (countdown >= 10f)
+        if (countdown >= (numerator / speed))
         {
             Destroy(this.gameObject);    
         }
