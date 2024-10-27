@@ -23,7 +23,7 @@ public class Enemies : MonoBehaviour
     private float time = 0f;
     private bool canAttack = false;
 
-    private bool flip = false;
+    /*private bool flip = false;*/
     private bool flipped = false;
     bool death = false;
 
@@ -109,13 +109,13 @@ public class Enemies : MonoBehaviour
                     break;
 
                 default:
-                    if (flip && !flipped)
+                   /* if (flip && !flipped)
                     {
                         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
                         spriteRenderer.flipX = true;
                         stats.speed -= stats.speed * 0.7f;
                         flipped = true;
-                    }
+                    } */
                     rb.velocity = new Vector2(-stats.speed, 0);
                     break;
             }
@@ -140,10 +140,11 @@ public class Enemies : MonoBehaviour
             canAttack = true;
         }
 
-        if (time > 1f && !flipped)
+      /*  if (time > 1f && !flipped)
         {
             flip = true;
         }
+      */
 
     }
 

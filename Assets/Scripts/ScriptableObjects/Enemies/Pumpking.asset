@@ -20,7 +20,7 @@ MonoBehaviour:
     attackSpeed: 2
     criticalChance: 0
     criticalPercent: 0
-    speed: 7
+    speed: 5
     invincible: 0
     souls: 0
     xp: 0
