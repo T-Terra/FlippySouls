@@ -4,12 +4,17 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public static HUD Instance {get; private set;}
+    public static HUD Instance {get; set;}
 
+    public float meters;
+    public Slider hp;
     public Slider xp;
     public TMP_Text souls;
     public TMP_Text metersDistance;
-    public GameObject PowerUpScreem;
+    public GameObject PowerUpScreen;
+    public GameObject ResultsScreen;
+    public TMP_Text metersDistanceResults;
+    public TMP_Text metersHighResults;
 
     private void Awake() {
         if(Instance != null) {
@@ -18,19 +23,39 @@ public class HUD : MonoBehaviour
             Instance = this;
         }
     }
-    
+
+    private void Start() {
+        metersHighResults.text = PlayerPrefs.GetFloat("high").ToString("F0");
+    }
+
     public void ExpHandler( float points = 10 ) {
         if(xp.value == xp.maxValue) {
             Time.timeScale = 0;
-            PowerUpScreem.SetActive(true);
+            PowerUpScreen.SetActive(true);
             xp.value = 0;
         }
         xp.value += points;
     }
 
+    public void HpHandler( float time = 4 ) {
+        hp.value -= Time.deltaTime * time;
+        if(hp.value == hp.minValue) {
+            Time.timeScale = 0;
+            ResultsScreen.SetActive(true);
+            metersDistanceResults.text = (meters).ToString("F0");
+
+            // save high score
+            if (!PlayerPrefs.HasKey("high")) {
+                PlayerPrefs.SetFloat("high", meters);
+            } else if (PlayerPrefs.GetFloat("high") < meters) {
+                PlayerPrefs.SetFloat("high", meters);
+            }
+        }
+    }
+
     public void MetersHandler( int RateMeters = 10 ) {
-        float meters = Time.time;
-        metersDistance.text = (meters * RateMeters).ToString("F0") + "M";
+        meters += Time.deltaTime * RateMeters;
+        metersDistance.text = (meters).ToString("F0") + "M";
     }
 
     public void SoulsHandler( int soulsColleted = 0) {
