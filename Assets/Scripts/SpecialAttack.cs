@@ -4,78 +4,79 @@ using UnityEngine;
 
 public class SpecialAttack : MonoBehaviour
 {
-    public float size_grow; // Fator de crescimento ao ativar o especial
-    private GameObject player;
-    public GameObject background;
-    public GameObject enemies;
-    private Stats player_stats;
-    public float timer = 0;
-    public float special_attack_timer = 5; // Tempo mínimo entre especiais
+    public float size_grow = 3f; // Fator de crescimento ao ativar o especial
+    public float special_attack_timer = 5f; // Tempo mínimo entre especiais
+    public float timelimit = 3f; // Duração do especial
+    public float rotationSpeed = 360f; // Velocidade de rotação em graus por segundo
+
     private Transform player_transform;
-    public float timelimit; // Duração do especial
+    private Stats player_stats;
+    private Vector3 originalScale; // Escala original do player
+    private Quaternion originalRotation; // Rotação original do player
+
+    private float timer = 0f;
     private bool is_tripled = false;
-    public float t0 = 0;
-    private Vector3 originalScale;
-    public float rotationDuration = 0.5f; // Duração do giro em segundos
-    private Quaternion originalRotation;
+    private float t0 = 0f;
 
     void Start()
     {
-        PlayerMovement player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        Stats player_stats = player.stats;
-        Scenario background = gameObject.GetComponentInChildren<Scenario>();
-        
+        // Encontrar o player e componentes necessários
         player_transform = gameObject.GetComponent<Transform>();
+        player_stats = gameObject.GetComponent<PlayerMovement>().stats;
+
+        // Armazena o tamanho e rotação original do player
         originalScale = player_transform.localScale;
         originalRotation = player_transform.rotation;
     }
 
     void Update()
     {
+        // Atualiza o temporizador
         timer += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.R) && timer >= special_attack_timer && !is_tripled)
+        // Ativa o especial se o tempo mínimo e a tecla R forem satisfeitos
+        if (Input.GetKeyDown(KeyCode.R) && timer >= special_attack_timer && !is_tripled)
         {
             t0 = timer;
-            specialAttack();
-            
+            ActivateSpecialAttack();
         }
 
+        // Desativa o especial quando o tempo limite é alcançado
         if (is_tripled && timer >= (t0 + timelimit))
         {
-            deactivateSpecialAttack();
-           
+            DeactivateSpecialAttack();
         }
     }
 
-    void specialAttack()
-    {   
-        player_transform.localScale = originalScale * size_grow; // Triplica o tamanho
-        player_stats.invincible = true;
-        StartCoroutine(PerformFlip());
+    void ActivateSpecialAttack()
+    {
+        player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
+        player_stats.invincible = true; // Torna o player invencível
         is_tripled = true;
 
-    }   
+        // Inicia a rotação do especial
+        StartCoroutine(PerformFlip());
+    }
 
-    void deactivateSpecialAttack()
-    {   
+    void DeactivateSpecialAttack()
+    {
         player_transform.localScale = originalScale; // Retorna ao tamanho original
-        player_stats.invincible = false;
-        StopCoroutine(PerformFlip());
+        player_transform.rotation = originalRotation; // Retorna à rotação original
+       player_stats.invincible = false; // Remove a invencibilidade
+        is_tripled = false;
+        timer = 0f; // Reinicia o timer
     }
 
     private IEnumerator PerformFlip()
     {
-        float elapsed = 0f;
-        float initialRotation = transform.eulerAngles.z; // Pega o ângulo inicial no eixo Z
-
-        while (is_tripled == true)
+        while (is_tripled)
         {
-            float angle = Mathf.Lerp(0, 360f, elapsed / rotationDuration); // Rotação completa de 360°
-            transform.rotation = Quaternion.Euler(0, 0, -1 * (initialRotation + angle)); // Aplica a rotação no eixo Z
-            elapsed += Time.deltaTime;
+            // Rotaciona o personagem continuamente no eixo Z
+            player_transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
             yield return null;
         }
+
+        // Garante que a rotação volte ao estado original ao final do especial
+        player_transform.rotation = originalRotation;
     }
 }
-

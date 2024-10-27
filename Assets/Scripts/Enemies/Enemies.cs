@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +9,7 @@ using UnityEngine.EventSystems;
 public class Enemies : MonoBehaviour
 {
     Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
     public Stats stats;
     public GameObject projectile;
     public GameObject soul;
@@ -27,10 +29,11 @@ public class Enemies : MonoBehaviour
     private bool flipped = false;*/
     bool death = false;
 
-    private Material originalMaterial;
-    public Material whiteMaterial;
+    private Color originalColor;
     void Start()
     {
+        originalColor = gameObject.GetComponent<SpriteRenderer>().color;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         startYPosition = transform.position.y;
         time = 0f;
@@ -110,13 +113,13 @@ public class Enemies : MonoBehaviour
                     break;
 
                 default:
-                   /* if (flip && !flipped)
-                    {
-                        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = true;
-                        stats.speed -= stats.speed * 0.7f;
-                        flipped = true;
-                    } */
+                    /* if (flip && !flipped)
+                     {
+                         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                         spriteRenderer.flipX = true;
+                         stats.speed -= stats.speed * 0.7f;
+                         flipped = true;
+                     } */
                     rb.velocity = new Vector2(-stats.speed, 0);
                     break;
             }
@@ -141,11 +144,11 @@ public class Enemies : MonoBehaviour
             canAttack = true;
         }
 
-      /*  if (time > 1f && !flipped)
-        {
-            flip = true;
-        }
-      */
+        /*  if (time > 1f && !flipped)
+          {
+              flip = true;
+          }
+        */
 
     }
 
@@ -184,12 +187,11 @@ public class Enemies : MonoBehaviour
     {
         StartCoroutine(WhiteEffect(duration));
     }
-
     private IEnumerator WhiteEffect(float duration)
     {
-        gameObject.GetComponent<SpriteRenderer>().material = whiteMaterial;
+        spriteRenderer.color = Color.red; // Troca para vermelho temporariamente
         yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<SpriteRenderer>().material = originalMaterial;
+        spriteRenderer.color = originalColor; // Restaura a cor original
     }
 
 }

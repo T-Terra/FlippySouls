@@ -4588,7 +4588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038210598810000082, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3038210598810000082, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4635,13 +4635,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
-      propertyPath: whiteMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 61f5f24e1ac39d04a80009881e8dfaf3, type: 2}
-    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: stats.maxHP
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+      propertyPath: whiteMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 61f5f24e1ac39d04a80009881e8dfaf3, type: 2}
     - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: rotationDuration
       value: 0.4
@@ -4749,13 +4749,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size_grow: 3
-  background: {fileID: 2081744942}
-  enemies: {fileID: 303706167}
-  timer: 0
   special_attack_timer: 5
   timelimit: 10
-  t0: 0
-  rotationDuration: 0.5
+  rotationSpeed: 360
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

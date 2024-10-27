@@ -21,6 +21,21 @@ public static class UtilsFunc
         {
             Debug.LogWarning("Stats component not found on target.");
         }
+
+        if (target.tag != "Player")
+        {
+            target.GetComponent<Enemies>().ChangeToWhiteTemporarily(0.1f);
+        }
+        else
+        {
+            target.GetComponent<PlayerMovement>().ChangeToWhiteTemporarily(0.1f);
+        }
+
     }
+
+
+
+
+
 
 }

@@ -11,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool is_jumping = false;
 
-    private Material originalMaterial;
-    public Material whiteMaterial;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
     void Start()
     {
+        originalColor = gameObject.GetComponent<SpriteRenderer>().color;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         stats.hp = stats.maxHP;
     }
@@ -123,12 +125,11 @@ public class PlayerMovement : MonoBehaviour
     {
         StartCoroutine(WhiteEffect(duration));
     }
-
     private IEnumerator WhiteEffect(float duration)
     {
-        gameObject.GetComponent<SpriteRenderer>().material = whiteMaterial;
+        spriteRenderer.color = Color.red; // Troca para vermelho temporariamente
         yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<SpriteRenderer>().material = originalMaterial;
+        spriteRenderer.color = originalColor; // Restaura a cor original
     }
 
 }
