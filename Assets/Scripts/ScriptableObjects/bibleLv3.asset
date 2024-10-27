@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: bibleLv3
   m_EditorClassIdentifier: 
   ID: 11
-  spriteRender: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  spriteRender: {fileID: 21300000, guid: df9e24c9a950a76458d40d14bd9df188, type: 3}
   bibleTotal: 3
   hadoukenTime: 0
   darkPowerArea: 0

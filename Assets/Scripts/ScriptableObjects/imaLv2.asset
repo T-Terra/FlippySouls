@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: imaLv2
   m_EditorClassIdentifier: 
   ID: 9
-  spriteRender: {fileID: 0}
+  spriteRender: {fileID: 21300000, guid: a515dd7e1320119449a5acbc2faf4225, type: 3}
   bibleTotal: 0
   hadoukenTime: 0
   darkPowerArea: 0

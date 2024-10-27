@@ -23,7 +23,7 @@ public class PowerUpManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
+        InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void SpreadCards() {
         int Num = Random.Range(0, 15);
-        CardsPowerUp[count].GetComponent<Image>().sprite = PowerUpAttributes[0].spriteRender;
+        CardsPowerUp[count].GetComponent<Image>().sprite = PowerUpAttributes[Num].spriteRender;
         if(count == 2) {
             CancelInvoke(nameof(SpreadCards));
         }
