@@ -155,7 +155,6 @@ public class Enemies : MonoBehaviour
     IEnumerator DeathSequence()
     {
         death = true;  // Marque que o inimigo está em processo de morte
-        Debug.Log("morreu");
 
         float retreatTime = 0.5f;
         float elapsedTime = 0;
@@ -175,12 +174,10 @@ public class Enemies : MonoBehaviour
         if (soul)
         {
             Instantiate(soul, transform.position, Quaternion.identity);
-            Debug.Log("Item dropado."); // Log para confirmar que o item foi dropado
         }
 
         // Destruir o inimigo
         Destroy(gameObject);
-        Debug.Log("Inimigo destruído."); // Log para confirmar que o inimigo foi destruído
     }
 
     public void ChangeToWhiteTemporarily(float duration)
