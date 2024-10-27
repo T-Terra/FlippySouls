@@ -16,14 +16,14 @@ MonoBehaviour:
   stats:
     maxHP: 1
     hp: 5
-    baseAttack: 1
+    baseAttack: 10
     attackSpeed: 0
     criticalChance: 0
     criticalPercent: 0
     speed: 7
     invincible: 0
     souls: 0
-    xp: 0
+    xp: 15
     maxXp: 0
     level: 0
   sprite: {fileID: 21300000, guid: 2f216197e8d7c6544bbe20a71691ecb6, type: 3}
