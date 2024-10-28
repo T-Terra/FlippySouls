@@ -108,17 +108,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier" && collision.gameObject.tag != "Soul")
         {
-            if (Input.GetKeyDown(KeyCode.Space) && is_jumping)
+            if (is_jumping)
             {
                 Stats enemyStats = collision.gameObject.GetComponent<Enemies>().stats;
 
                 // Aplica dano ao inimigo
                 UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
-                Debug.Log($"Dano aplicado ao inimigo: {stats.baseAttack}. HP do inimigo: {enemyStats.hp}");
 
                 // Verifica se o inimigo morreu
                 if (enemyStats.hp <= 0)
@@ -129,12 +128,11 @@ public class PlayerMovement : MonoBehaviour
                         stats.hp += 10;  // Adicionei um log aqui para verificar a cura
                         HUD.Instance.HpAdd(stats.hp);
                        // HUD.Instance.ExpHandler(enemyStats.xp);
-                        Debug.Log($"Jogador curado! Novo HP: {stats.hp}");
                     }
                 }
             }
         }
-    }
+    }*/
 
     public void ChangeToWhiteTemporarily(float duration)
     {

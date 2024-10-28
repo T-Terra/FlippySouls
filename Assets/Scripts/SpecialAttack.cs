@@ -53,8 +53,8 @@ public class SpecialAttack : MonoBehaviour
 
     void ActivateSpecialAttack()
     {
-        player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
         player_stats.invincible = true; // Torna o player invencível
+        player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
         is_tripled = true;
         specialButton.SetActive(false);
         player_stats.souls = 0f;
