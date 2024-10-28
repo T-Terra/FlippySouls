@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
         HUD.Instance.HpHandler();
     }
 
+    public void PauseGameMobile() {
+        Time.timeScale = 0;
+        PauseScreen.SetActive(true);
+    }
+
     // Buttons Pause Screen
     public void RestartGame() {
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);

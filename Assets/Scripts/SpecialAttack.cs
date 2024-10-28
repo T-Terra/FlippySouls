@@ -41,7 +41,6 @@ public class SpecialAttack : MonoBehaviour
         {
             t0 = timer;
             ActivateSpecialAttack();
-            SpecialAudio.Play();
         }
 
         // Desativa o especial quando o tempo limite é alcançado
@@ -51,8 +50,35 @@ public class SpecialAttack : MonoBehaviour
         }
     }
 
-    void ActivateSpecialAttack()
+    public void ActivateSpecialMobile() {
+        timer += Time.deltaTime;
+
+        ActivateSpecialAttackMobile();
+
+
+        // Desativa o especial quando o tempo limite é alcançado
+        if (is_tripled && timer >= (t0 + timelimit))
+        {
+            StartCoroutine(DeactivateSpecialAttack());
+        }
+    }
+
+    public void ActivateSpecialAttack()
     {
+        SpecialAudio.Play();
+        player_stats.invincible = true; // Torna o player invencível
+        player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
+        is_tripled = true;
+        specialButton.SetActive(false);
+        player_stats.souls = 0f;
+        // Inicia a rotação do especial
+        StartCoroutine(PerformFlip());
+    }
+
+    public void ActivateSpecialAttackMobile()
+    {
+        t0 = timer;
+        SpecialAudio.Play();
         player_stats.invincible = true; // Torna o player invencível
         player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
         is_tripled = true;
