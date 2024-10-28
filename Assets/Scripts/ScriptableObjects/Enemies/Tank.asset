@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Tank
   stats:
-    maxHP: 4
-    hp: 4
-    baseAttack: 10
+    maxHP: 2
+    hp: 0
+    baseAttack: 5
     attackSpeed: 0
     criticalChance: 0
     criticalPercent: 0

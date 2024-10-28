@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     public AudioSource JumpAudio;
+    public GameObject specialButton;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        specialButtonActivate();
     }
 
     private void Jump()
@@ -46,6 +48,10 @@ public class PlayerMovement : MonoBehaviour
         is_jumping = true;
         rb.velocity = Vector2.up * jumpForce; // Define a velocidade do pulo
         StartCoroutine(PerformFlip());
+        if (!special.is_tripled)
+        {
+            stats.invincible = false;
+        }
     }
 
     private IEnumerator PerformFlip()
@@ -64,10 +70,7 @@ public class PlayerMovement : MonoBehaviour
         // Garante que a rotação finalize exatamente em 360 graus a partir da rotação inicial
         transform.rotation = Quaternion.Euler(0, 0, initialRotation + 360f);
         is_jumping = false;
-        if (!special.is_tripled)
-        {
-            stats.invincible = false;
-        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -99,6 +102,10 @@ public class PlayerMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("Barrier"))
         {
             Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Tank")
+        {
+            StartCoroutine(back(collision.gameObject));
         }
     }
 
@@ -139,6 +146,30 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer.color = Color.red; // Troca para vermelho temporariamente
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = originalColor; // Restaura a cor original
+    }
+
+    void specialButtonActivate()
+    {
+        if (stats.souls >= 100)
+        {
+            specialButton.SetActive(true);
+        }
+    }
+
+    IEnumerator back(GameObject enemy)
+    {
+
+        float retreatTime = 0.5f;
+        float elapsedTime = 0;
+
+        // Recuo do inimigo para a direita
+        while (elapsedTime < retreatTime)
+        {
+            enemy.GetComponent<Rigidbody2D>().velocity = new Vector2(5f, 0); // Aplique um recuo para a direita
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
     }
 
 }

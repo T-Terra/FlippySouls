@@ -66,6 +66,7 @@ public class Enemies : MonoBehaviour
             {
                 UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
             }
+
         }
         else if (collision.gameObject.CompareTag("Barrier"))
         {
@@ -173,6 +174,8 @@ public class Enemies : MonoBehaviour
         // Destruir o inimigo
         Destroy(gameObject);
     }
+
+
 
     public void ChangeToWhiteTemporarily(float duration)
     {

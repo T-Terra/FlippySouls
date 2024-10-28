@@ -18,6 +18,7 @@ public class SpecialAttack : MonoBehaviour
     public bool is_tripled = false;
     private float t0 = 0f;
     public AudioSource SpecialAudio;
+    public GameObject specialButton;
 
     void Start()
     {
@@ -46,7 +47,7 @@ public class SpecialAttack : MonoBehaviour
         // Desativa o especial quando o tempo limite é alcançado
         if (is_tripled && timer >= (t0 + timelimit))
         {
-            DeactivateSpecialAttack();
+            StartCoroutine(DeactivateSpecialAttack());
         }
     }
 
@@ -55,18 +56,22 @@ public class SpecialAttack : MonoBehaviour
         player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
         player_stats.invincible = true; // Torna o player invencível
         is_tripled = true;
-
+        specialButton.SetActive(false);
+        player_stats.souls = 0f;
         // Inicia a rotação do especial
         StartCoroutine(PerformFlip());
     }
 
-    void DeactivateSpecialAttack()
+    private IEnumerator DeactivateSpecialAttack()
     {
         player_transform.localScale = originalScale; // Retorna ao tamanho original
         player_transform.rotation = originalRotation; // Retorna à rotação original
-       player_stats.invincible = false; // Remove a invencibilidade
+
         is_tripled = false;
         timer = 0f; // Reinicia o timer
+
+        yield return new WaitForSeconds(1f);
+        player_stats.invincible = false;
     }
 
     private IEnumerator PerformFlip()

@@ -115,7 +115,6 @@ MonoBehaviour:
   projectile: {fileID: 6415383359609065554, guid: 3ba74fafe40d188438f5c86f7951b56c, type: 3}
   soul: {fileID: 4918788051711360330, guid: 99057d181694f8a44b0ac9f8de1bc452, type: 3}
   enemyDataList: []
-  whiteMaterial: {fileID: 2100000, guid: 61f5f24e1ac39d04a80009881e8dfaf3, type: 2}
 --- !u!58 &1903562850782308006
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -150,7 +149,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 1.24
 --- !u!50 &4414097814869228484
 Rigidbody2D:
   serializedVersion: 4
