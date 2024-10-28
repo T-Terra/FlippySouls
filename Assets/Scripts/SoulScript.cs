@@ -16,9 +16,11 @@ public class SoulScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
-            player.stats.souls += 15;
-            HUD.Instance.ExpHandler(15);
-            HUD.Instance.SoulsHandler(player.stats.souls);
+            if(player.stats.souls <= 100) {
+                player.stats.souls += 20;
+                HUD.Instance.ExpHandler(20);
+                HUD.Instance.SoulsHandler(player.stats.souls);
+            }
             //  hud.SoulsHandler(player.stats.souls);
             Destroy(gameObject);
         }else if (collision.gameObject.CompareTag("Barrier"))

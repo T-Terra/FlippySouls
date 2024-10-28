@@ -29,6 +29,7 @@ public class SpellScript : MonoBehaviour
             if (!player.stats.invincible)
             {
                 UtilsFunc.TakeDamage(collision.gameObject, damage);
+                Destroy(gameObject);
             }
         }
         else if(collision.gameObject.tag == "Barrier")

@@ -37,7 +37,7 @@ public class SpecialAttack : MonoBehaviour
         timer += Time.deltaTime;
 
         // Ativa o especial se o tempo mínimo e a tecla R forem satisfeitos
-        if (Input.GetKeyDown(KeyCode.R) && timer >= special_attack_timer && !is_tripled)
+        if (Input.GetKeyDown(KeyCode.R) && player_stats.souls >= 100 && !is_tripled)
         {
             t0 = timer;
             ActivateSpecialAttack();

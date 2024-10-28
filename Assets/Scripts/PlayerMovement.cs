@@ -44,18 +44,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        stats.invincible = true;
         is_jumping = true;
         rb.velocity = Vector2.up * jumpForce; // Define a velocidade do pulo
         StartCoroutine(PerformFlip());
-        if (!special.is_tripled)
-        {
-            stats.invincible = false;
-        }
     }
 
     private IEnumerator PerformFlip()
     {
+        stats.invincible = true;
         float elapsed = 0f;
         float initialRotation = transform.eulerAngles.z; // Pega o ângulo inicial no eixo Z
 
@@ -70,7 +66,10 @@ public class PlayerMovement : MonoBehaviour
         // Garante que a rotação finalize exatamente em 360 graus a partir da rotação inicial
         transform.rotation = Quaternion.Euler(0, 0, initialRotation + 360f);
         is_jumping = false;
-
+        if (!special.is_tripled)
+        {
+            stats.invincible = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
