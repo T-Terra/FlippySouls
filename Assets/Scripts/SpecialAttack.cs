@@ -15,7 +15,7 @@ public class SpecialAttack : MonoBehaviour
     private Quaternion originalRotation; // Rotação original do player
 
     private float timer = 0f;
-    private bool is_tripled = false;
+    public bool is_tripled = false;
     private float t0 = 0f;
     public AudioSource SpecialAudio;
 

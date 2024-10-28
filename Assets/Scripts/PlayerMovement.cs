@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float rotationDuration = 0.5f; // Duração do giro em segundos
     private Rigidbody2D rb;
     private bool is_jumping = false;
+    SpecialAttack special;
+    private bool skill = false;
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        special = gameObject.GetComponent<SpecialAttack>();
         originalColor = gameObject.GetComponent<SpriteRenderer>().color;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -61,7 +64,10 @@ public class PlayerMovement : MonoBehaviour
         // Garante que a rotação finalize exatamente em 360 graus a partir da rotação inicial
         transform.rotation = Quaternion.Euler(0, 0, initialRotation + 360f);
         is_jumping = false;
-        stats.invincible = false;
+        if (!special.is_tripled)
+        {
+            stats.invincible = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

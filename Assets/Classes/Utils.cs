@@ -12,9 +12,6 @@ public static class UtilsFunc
             stats.hp -= damage;
             HUD.Instance.HpRemove(stats.hp);
         }
-        else
-        {
-        }
 
         if (target.tag != "Player")
         {

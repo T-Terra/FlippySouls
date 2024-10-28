@@ -46,11 +46,6 @@ public class Enemies : MonoBehaviour
                 target = player.transform.position;
                 direction = ((target - (Vector2)transform.position).normalized) * stats.speed;
                 playerStats = player.GetComponent<PlayerMovement>().stats;
-
-                if (gameObject.CompareTag("Tank"))
-                {
-                    stats.maxHP = (playerStats.baseAttack * 2) - 1;
-                }
             }
             else
             {
@@ -69,7 +64,6 @@ public class Enemies : MonoBehaviour
             Stats playerStats = collision.gameObject.GetComponent<PlayerMovement>().stats;
             if (!playerStats.invincible)
             {
-                playerStats.hp -= stats.baseAttack;
                 UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
             }
         }
