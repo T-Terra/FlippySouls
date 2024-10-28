@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
     public GameObject PauseScreen;
+    public AudioSource GameplayAudio;
     private void Awake() {
         if(Instance != null) {
             Destroy(gameObject);
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         HUD.Instance.HpHandler();
     }
 
+    // Buttons Pause Screen
     public void RestartGame() {
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
@@ -31,5 +33,9 @@ public class GameManager : MonoBehaviour
     public void ResumeGame() {
         PauseScreen.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void MuteAudio() {
+        GameplayAudio.volume = 0;
     }
 }
