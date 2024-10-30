@@ -14,6 +14,7 @@ public class PowerUpManager : MonoBehaviour
     public GameObject[] CardsPowerUp;
 
     public GameObject PowerUpScreem;
+    private PlayerMovement Player;
 
     private int count = 0;
     private int SortNumPrevious = 0;
@@ -23,14 +24,13 @@ public class PowerUpManager : MonoBehaviour
         } else {
             Instance = this;
         }
-
-        //InvokeRepeating(nameof(SpreadCards), 0, 1f * Time.deltaTime);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        Player.OnActivatedPowerUp += CoroutineCards;
     }
 
     // Update is called once per frame
@@ -39,26 +39,35 @@ public class PowerUpManager : MonoBehaviour
 
     }
 
-    public void SpreadCards() {
-        int numRandom = Random.Range(0, 5);
+    public void CoroutineCards() {
+        StartCoroutine(SpreadCards());
+    }
 
-        if (numRandom != SortNumPrevious) {
+    public IEnumerator SpreadCards() {
+        int i = 0;
+        while (true)
+        {
+            int numRandom = Random.Range(0, 5);
+
             var newPowerUp = PowerUpAttributesV2[numRandom];
             
             // Verifica se o ID do novo PowerUp já está presente na lista
             bool idExists = PowerUpAttributes.Any(powerUp => powerUp.ID == newPowerUp.ID);
-            
+            print(idExists);
+        
             if (!idExists) {
-                SortNumPrevious = numRandom;
+                print(PowerUpAttributes.Count);
                 PowerUpAttributes.Add(newPowerUp);
 
-                CardsPowerUp[count].GetComponent<Image>().sprite = PowerUpAttributes[count].spriteRender;
-                count++;
-            
-                if (count == 3) {
-                    CancelInvoke(nameof(SpreadCards));
-                }
+                CardsPowerUp[i].GetComponent<Image>().sprite = PowerUpAttributes[i].spriteRender;
+                print(PowerUpAttributes[i]);
+                i++;
             }
+
+            if(i == 3) {
+                break;
+            }
+            yield return null;
         }
     }
 

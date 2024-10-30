@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public delegate void ActivePowerUp();
+    public event ActivePowerUp OnActivatedPowerUp;
     public Stats stats;
     public GameObject player;
     public float jumpForce = 5f;
@@ -40,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
             Destroy(gameObject);
         }
         specialButtonActivate();
+        if(stats.xp == 100) {
+            OnActivatedPowerUp?.Invoke();
+            stats.xp = 0;
+            print("Toma");
+        }
     }
 
     private void Jump()
@@ -86,8 +93,9 @@ public class PlayerMovement : MonoBehaviour
                     if (stats.hp < stats.maxHP)
                     {
                         stats.hp += 10;
+                        stats.xp += enemyStats.xp;
+                        HUD.Instance.ExpHandler(stats.xp);
                         HUD.Instance.HpAdd(stats.hp);
-                      //  HUD.Instance.ExpHandler(enemyStats.xp);
 
                     }
                     else if (stats.hp > stats.maxHP)

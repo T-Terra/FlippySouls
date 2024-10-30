@@ -18,8 +18,9 @@ public class SoulScript : MonoBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if(player.stats.souls < 100) {
                 player.stats.souls += 20;
-                HUD.Instance.ExpHandler(20);
                 HUD.Instance.SoulsHandler(player.stats.souls);
+            } else {
+                player.stats.level += 1;
             }
             //  hud.SoulsHandler(player.stats.souls);
             Destroy(gameObject);

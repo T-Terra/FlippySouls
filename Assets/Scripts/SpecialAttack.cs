@@ -95,7 +95,8 @@ public class SpecialAttack : MonoBehaviour
 
         is_tripled = false;
         timer = 0f; // Reinicia o timer
-
+        
+        this.gameObject.GetComponent<PlayerMovement>().stats.souls = 0; // reinicia as almas depois que acabar o especial
         yield return new WaitForSeconds(1f);
         player_stats.invincible = false;
     }
