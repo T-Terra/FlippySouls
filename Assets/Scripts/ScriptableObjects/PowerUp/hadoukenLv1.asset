@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4447e22fb15fbdb4e9735e05a6bdf032, type: 3}
   m_Name: hadoukenLv1
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 3
   spriteRender: {fileID: 21300000, guid: 0e1b97573bb366e4d84415a7c4b80167, type: 3}
   bibleTotal: 0
   hadoukenTime: 8

@@ -9,15 +9,18 @@ public class PowerUpManager : MonoBehaviour
     public static PowerUpManager Instance { get; private set; }
 
     public List<PowerUpCards> PowerUpAttributes;
-
-    public List<PowerUpCards> PowerUpAttributesV2;
+    public List<PowerUpCards> PowerUpBible;
+    public List<PowerUpCards> PowerUpHadounken;
+    public List<PowerUpCards> PowerUpIma;
+    public List<PowerUpCards> PowerUpFoice;
+    public List<PowerUpCards> PowerUpShield;
     public GameObject[] CardsPowerUp;
 
     public GameObject PowerUpScreem;
+    public GameObject[] bibleObj;
     private PlayerMovement Player;
-
-    private int count = 0;
-    private int SortNumPrevious = 0;
+    private PowerUpCards newPowerUp;
+    public int SelectedSkill;
     private void Awake() {
         if(Instance != null) {
             Destroy(gameObject);
@@ -49,18 +52,25 @@ public class PowerUpManager : MonoBehaviour
         {
             int numRandom = Random.Range(0, 5);
 
-            var newPowerUp = PowerUpAttributesV2[numRandom];
+            if(numRandom == 0 && PowerUpBible.Count != 0) {
+                newPowerUp = PowerUpBible[0];
+            } else if (numRandom == 1 && PowerUpFoice.Count != 0) {
+                newPowerUp = PowerUpFoice[0];
+            } else if (numRandom == 2 && PowerUpHadounken.Count != 0) {
+                newPowerUp = PowerUpHadounken[0];
+            } else if (numRandom == 3 && PowerUpIma.Count != 0) {
+                newPowerUp = PowerUpIma[0];
+            } else if (numRandom == 4 && PowerUpShield.Count != 0) {
+                newPowerUp = PowerUpShield[0];
+            }
             
             // Verifica se o ID do novo PowerUp já está presente na lista
             bool idExists = PowerUpAttributes.Any(powerUp => powerUp.ID == newPowerUp.ID);
-            print(idExists);
         
             if (!idExists) {
-                print(PowerUpAttributes.Count);
                 PowerUpAttributes.Add(newPowerUp);
 
                 CardsPowerUp[i].GetComponent<Image>().sprite = PowerUpAttributes[i].spriteRender;
-                print(PowerUpAttributes[i]);
                 i++;
             }
 
@@ -71,19 +81,139 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    public void CleanList( PowerUpCards Item ) {
-        for (int i = 0; i < PowerUpAttributesV2.Count; i++)
-        {
-            if(PowerUpAttributesV2[i].ID == Item.ID) {
-                PowerUpAttributesV2.RemoveAt(i);
-            }
+    public IEnumerator CleanList( PowerUpCards Item ) {
+
+        if(SelectedSkill == 0) {
+            PowerUpBible.RemoveAt(0);
+        } else if (SelectedSkill == 1) {
+            PowerUpFoice.RemoveAt(0);
+        } else if (SelectedSkill == 2) {
+            PowerUpHadounken.RemoveAt(0);
+        } else if (SelectedSkill == 3) {
+            PowerUpIma.RemoveAt(0);
+        } else if (SelectedSkill == 4) {
+            PowerUpShield.RemoveAt(0);
         }
+        
+        yield return null;
     }
 
     public void SelectPower( int Item ) {
-        CleanList(PowerUpAttributes[Item]);
+        SelectSkill(PowerUpAttributes[Item]);
+        StartCoroutine(CleanList(PowerUpAttributes[Item]));
         PowerUpAttributes.Clear();
         PowerUpScreem.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    private void SelectSkill( PowerUpCards Item ) {
+        if(Item.ID < 6) {
+            switch (Item.ID)
+            {
+                case 1:
+                    BiblePower(Item.bibleTotal);
+                    SelectedSkill = 0;
+                    break;
+                case 2:
+                    FoicePower(Item.darkPowerArea);
+                    SelectedSkill = 1;
+                    break;
+                case 3:
+                    HadounkenPower(Item.hadoukenTime);
+                    SelectedSkill = 2;
+                    break;
+                case 4:
+                    ImaPower();
+                    SelectedSkill = 3;
+                    break;
+                case 5:
+                    ShieldPower(Item.timeShield, Item.ShieldInterval);
+                    SelectedSkill = 4;
+                    break;
+                default:
+                    break;
+            }           
+        } else if (Item.ID >= 6) {
+            switch (Item.ID)
+            {
+                case 6:
+                    BiblePower(Item.bibleTotal);
+                    SelectedSkill = 0;
+                    break;
+                case 7:
+                    FoicePower(Item.darkPowerArea);
+                    SelectedSkill = 1;
+                    break;
+                case 8:
+                    HadounkenPower(Item.hadoukenTime);
+                    SelectedSkill = 2;
+                    break;
+                case 9:
+                    ImaPower();
+                    SelectedSkill = 3;
+                    break;
+                case 10:
+                    ShieldPower(Item.timeShield, Item.ShieldInterval);
+                    SelectedSkill = 4;
+                    break;
+                default:
+                    break;
+            } 
+        } else if (Item.ID > 10 && Item.ID < 16) {
+            switch (Item.ID)
+            {
+                case 11:
+                    BiblePower(Item.bibleTotal);
+                    SelectedSkill = 0;
+                    break;
+                case 12:
+                    FoicePower(Item.darkPowerArea);
+                    SelectedSkill = 1;
+                    break;
+                case 13:
+                    HadounkenPower(Item.hadoukenTime);
+                    SelectedSkill = 2;
+                    break;
+                case 14:
+                    ImaPower();
+                    SelectedSkill = 3;
+                    break;
+                case 15:
+                    ShieldPower(Item.timeShield, Item.ShieldInterval);
+                    SelectedSkill = 4;
+                    break;
+                default:
+                    break;
+            } 
+        }
+    }
+
+    private void BiblePower( int total ) {
+        if(total == 1) {
+            bibleObj[0].SetActive(true);
+            Player.stats.levelBible += 1;
+        } else if (total == 2) {
+            bibleObj[1].SetActive(true);
+            Player.stats.levelBible += 1;
+        } else {
+            bibleObj[2].SetActive(true);
+            Player.stats.levelBible += 1;
+        }
+    }
+
+    private void HadounkenPower( float time ) {
+        
+    }
+
+    private void ImaPower() {
+        
+    }
+
+    private void FoicePower( float area ) {
+
+    }
+
+    private void ShieldPower( float timeShield, float shieldInterval ) {
+
     }
 }
