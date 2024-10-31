@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
         if(stats.xp == 100) {
             OnActivatedPowerUp?.Invoke();
             stats.xp = 0;
-            print("Toma");
         }
     }
 
@@ -81,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier" && collision.gameObject.tag != "Soul")
+        if (collision.gameObject.tag == "Medusa" || collision.gameObject.tag == "Pumpking" || collision.gameObject.tag == "Stalker" || collision.gameObject.tag == "Tank" || collision.gameObject.tag == "Default")
         {
             if (is_jumping)
             {

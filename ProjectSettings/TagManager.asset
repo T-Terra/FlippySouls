@@ -12,6 +12,7 @@ TagManager:
   - Background
   - Spell
   - Soul
+  - Default
   layers:
   - Default
   - TransparentFX

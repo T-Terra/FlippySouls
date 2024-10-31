@@ -84,26 +84,48 @@ public class PowerUpManager : MonoBehaviour
     public IEnumerator CleanList( PowerUpCards Item ) {
 
         if(SelectedSkill == 0) {
-            PowerUpBible.RemoveAt(0);
+            if(PowerUpBible.Count == 1) {
+                PowerUpBible.Clear();
+            } else {
+                PowerUpBible.RemoveAt(0);
+            }
         } else if (SelectedSkill == 1) {
-            PowerUpFoice.RemoveAt(0);
+            if(PowerUpFoice.Count == 1) {
+                PowerUpFoice.Clear();
+            } else {
+                PowerUpFoice.RemoveAt(0);
+            }
         } else if (SelectedSkill == 2) {
-            PowerUpHadounken.RemoveAt(0);
+            if(PowerUpHadounken.Count == 1) {
+                PowerUpHadounken.Clear();
+            } else {
+                PowerUpHadounken.RemoveAt(0);
+            }
         } else if (SelectedSkill == 3) {
-            PowerUpIma.RemoveAt(0);
+            if(PowerUpIma.Count == 1) {
+                PowerUpIma.Clear();
+            } else {
+                PowerUpIma.RemoveAt(0);
+            }
         } else if (SelectedSkill == 4) {
-            PowerUpShield.RemoveAt(0);
+            if(PowerUpShield.Count == 1) {
+                PowerUpShield.Clear();
+            } else {
+                PowerUpShield.RemoveAt(0);
+            }
         }
         
         yield return null;
     }
 
     public void SelectPower( int Item ) {
-        SelectSkill(PowerUpAttributes[Item]);
-        StartCoroutine(CleanList(PowerUpAttributes[Item]));
-        PowerUpAttributes.Clear();
-        PowerUpScreem.SetActive(false);
-        Time.timeScale = 1;
+        if(PowerUpAttributes.Count != 0) {
+            SelectSkill(PowerUpAttributes[Item]);
+            StartCoroutine(CleanList(PowerUpAttributes[Item]));
+            PowerUpAttributes.Clear();
+            PowerUpScreem.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 
     private void SelectSkill( PowerUpCards Item ) {
@@ -133,7 +155,7 @@ public class PowerUpManager : MonoBehaviour
                 default:
                     break;
             }           
-        } else if (Item.ID >= 6) {
+        } else if (Item.ID >= 6 && Item.ID <= 10) {
             switch (Item.ID)
             {
                 case 6:
@@ -195,25 +217,24 @@ public class PowerUpManager : MonoBehaviour
         } else if (total == 2) {
             bibleObj[1].SetActive(true);
             Player.stats.levelBible += 1;
-        } else {
+        } else if (total == 3) {
             bibleObj[2].SetActive(true);
-            Player.stats.levelBible += 1;
         }
     }
 
     private void HadounkenPower( float time ) {
-        
+        Player.stats.levelHadounken += 1;
     }
 
     private void ImaPower() {
-        
+        Player.stats.levelIma += 1;
     }
 
     private void FoicePower( float area ) {
-
+        Player.stats.levelFoice += 1;
     }
 
     private void ShieldPower( float timeShield, float shieldInterval ) {
-
+        Player.stats.levelShield += 1;
     }
 }

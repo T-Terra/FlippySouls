@@ -82,7 +82,7 @@ public class Enemies : MonoBehaviour
             {
                 case "Medusa":
                     float range = 3f; // Amplitude do zig-zag
-                    float zigZagFrequency = 3f; // Frequência fixa do zig-zag
+                    float zigZagFrequency = 3f; // Frequï¿½ncia fixa do zig-zag
                     float zigZagMoviment = Mathf.Sin(Time.time * zigZagFrequency) * range;
 
                     rb.velocity = new Vector2(-stats.speed, zigZagMoviment);
@@ -128,7 +128,7 @@ public class Enemies : MonoBehaviour
             }
         }
 
-        //Verificação de cooldown
+        //Verificaï¿½ï¿½o de cooldown
         if (time < stats.attackSpeed)
         {
             canAttack = false;
@@ -149,7 +149,8 @@ public class Enemies : MonoBehaviour
 
     IEnumerator DeathSequence()
     {
-        death = true;  // Marque que o inimigo está em processo de morte
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        death = true;  // Marque que o inimigo estï¿½ em processo de morte
 
         float retreatTime = 0.5f;
         float elapsedTime = 0;
@@ -162,7 +163,7 @@ public class Enemies : MonoBehaviour
             yield return null;
         }
 
-        // Pare o movimento após o recuo
+        // Pare o movimento apï¿½s o recuo
         rb.velocity = Vector2.zero;
 
         // Drop do item
