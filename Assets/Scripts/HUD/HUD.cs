@@ -33,8 +33,6 @@ public class HUD : MonoBehaviour
     public void ExpHandler( float points = 10 ) {
         if(xp.value == xp.maxValue) {
             xp.value = 0;
-            PowerUpScreen.SetActive(true);
-            Time.timeScale = 0;
         }
         xp.value = points;
     }

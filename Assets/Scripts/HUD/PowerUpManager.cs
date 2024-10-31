@@ -16,7 +16,7 @@ public class PowerUpManager : MonoBehaviour
     public List<PowerUpCards> PowerUpShield;
     public GameObject[] CardsPowerUp;
 
-    public GameObject PowerUpScreem;
+    public GameObject PowerUpScreen;
     public GameObject[] bibleObj;
     private PlayerMovement Player;
     private PowerUpCards newPowerUp;
@@ -74,6 +74,11 @@ public class PowerUpManager : MonoBehaviour
                 i++;
             }
 
+            if(PowerUpAttributes.Count == 3) {
+                PowerUpScreen.SetActive(true);
+                Time.timeScale = 0;
+            }
+
             if(i == 3) {
                 break;
             }
@@ -123,7 +128,7 @@ public class PowerUpManager : MonoBehaviour
             SelectSkill(PowerUpAttributes[Item]);
             StartCoroutine(CleanList(PowerUpAttributes[Item]));
             PowerUpAttributes.Clear();
-            PowerUpScreem.SetActive(false);
+            PowerUpScreen.SetActive(false);
             Time.timeScale = 1;
         }
     }

@@ -3655,7 +3655,7 @@ MonoBehaviour:
   - {fileID: 8637689}
   - {fileID: 1740367317}
   - {fileID: 2111200125}
-  PowerUpScreem: {fileID: 123824611}
+  PowerUpScreen: {fileID: 123824611}
   bibleObj:
   - {fileID: 2125860545}
   - {fileID: 280246503}
