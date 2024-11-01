@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 8637693}
   - component: {fileID: 8637692}
   - component: {fileID: 8637691}
+  - component: {fileID: 8637694}
   m_Layer: 0
   m_Name: ButtonPowerUp
   m_TagString: Untagged
@@ -200,7 +201,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8637692}
   m_OnClick:
     m_PersistentCalls:
@@ -255,6 +256,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8637689}
   m_CullTransparentMesh: 1
+--- !u!114 &8637694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &123824611
 GameObject:
   m_ObjectHideFlags: 0
@@ -5681,6 +5694,7 @@ GameObject:
   - component: {fileID: 1740367321}
   - component: {fileID: 1740367320}
   - component: {fileID: 1740367319}
+  - component: {fileID: 1740367322}
   m_Layer: 0
   m_Name: ButtonPowerUp (1)
   m_TagString: Untagged
@@ -5747,7 +5761,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1740367320}
   m_OnClick:
     m_PersistentCalls:
@@ -5802,6 +5816,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740367317}
   m_CullTransparentMesh: 1
+--- !u!114 &1740367322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740367317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1877641401
 GameObject:
   m_ObjectHideFlags: 0
@@ -6453,6 +6479,7 @@ GameObject:
   - component: {fileID: 2111200129}
   - component: {fileID: 2111200128}
   - component: {fileID: 2111200127}
+  - component: {fileID: 2111200130}
   m_Layer: 0
   m_Name: ButtonPowerUp (2)
   m_TagString: Untagged
@@ -6519,7 +6546,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2111200128}
   m_OnClick:
     m_PersistentCalls:
@@ -6574,6 +6601,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111200125}
   m_CullTransparentMesh: 1
+--- !u!114 &2111200130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111200125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2125860545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1718738362605249079, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
@@ -6654,6 +6693,10 @@ PrefabInstance:
     - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: radius
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+      propertyPath: stats.xp
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: JumpAudio

@@ -41,7 +41,7 @@ public class AttackBible : MonoBehaviour
                 {
                     if (StatsPlayer.stats.hp < StatsPlayer.stats.maxHP)
                     {
-                        StatsPlayer.stats.hp += 5;
+                        StatsPlayer.stats.hp += 2;
                         StatsPlayer.stats.xp += enemyStats.stats.xp;
                         HUD.Instance.ExpHandler(StatsPlayer.stats.xp);
                         HUD.Instance.HpAdd(StatsPlayer.stats.hp);

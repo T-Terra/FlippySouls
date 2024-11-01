@@ -5,7 +5,9 @@ using UnityEngine;
 public class SoulScript : MonoBehaviour
 {
     HUD hud;
-
+    private void Start() {
+        Destroy(gameObject, 10f);
+    }
     void Update()
     {
         transform.position += Vector3.left * 2 * Time.deltaTime;

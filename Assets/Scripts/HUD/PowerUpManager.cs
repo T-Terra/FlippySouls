@@ -125,6 +125,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void SelectPower( int Item ) {
         if(PowerUpAttributes.Count != 0) {
+            print("Meu ovo");
             SelectSkill(PowerUpAttributes[Item]);
             StartCoroutine(CleanList(PowerUpAttributes[Item]));
             PowerUpAttributes.Clear();
