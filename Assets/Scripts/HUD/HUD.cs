@@ -40,7 +40,6 @@ public class HUD : MonoBehaviour
     }
 
     public void HpHandler( float time = 5) {
-        print(Time.time);
         if(Time.time > 60) {
             time = 10;
         }
