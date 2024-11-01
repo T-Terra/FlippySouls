@@ -32,6 +32,8 @@ public class Enemies : MonoBehaviour
     private Color originalColor;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerStats = player.GetComponent<PlayerMovement>().stats;
         originalColor = gameObject.GetComponent<SpriteRenderer>().color;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -40,12 +42,10 @@ public class Enemies : MonoBehaviour
 
         if (gameObject.CompareTag("Tank") || gameObject.CompareTag("Stalker"))
         {
-            player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
                 target = player.transform.position;
                 direction = ((target - (Vector2)transform.position).normalized) * stats.speed;
-                playerStats = player.GetComponent<PlayerMovement>().stats;
             }
             else
             {
@@ -61,8 +61,8 @@ public class Enemies : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Stats playerStats = collision.gameObject.GetComponent<PlayerMovement>().stats;
-            if (!playerStats.invincible)
+            PlayerMovement playerStats = collision.gameObject.GetComponent<PlayerMovement>();
+            if (!playerStats.stats.invincible)
             {
                 UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
             }
@@ -188,5 +188,4 @@ public class Enemies : MonoBehaviour
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = originalColor; // Restaura a cor original
     }
-
 }

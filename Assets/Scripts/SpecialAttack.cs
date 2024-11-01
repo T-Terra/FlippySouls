@@ -11,6 +11,7 @@ public class SpecialAttack : MonoBehaviour
 
     private Transform player_transform;
     private Stats player_stats;
+    private PlayerMovement player_;
     private Vector3 originalScale; // Escala original do player
     private Quaternion originalRotation; // Rotação original do player
 
@@ -25,6 +26,7 @@ public class SpecialAttack : MonoBehaviour
         // Encontrar o player e componentes necessários
         player_transform = gameObject.GetComponent<Transform>();
         player_stats = gameObject.GetComponent<PlayerMovement>().stats;
+        player_ = gameObject.GetComponent<PlayerMovement>();
 
         // Armazena o tamanho e rotação original do player
         originalScale = player_transform.localScale;
@@ -65,9 +67,12 @@ public class SpecialAttack : MonoBehaviour
 
     public void ActivateSpecialAttack()
     {
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         SpecialAudio.Play();
         player_stats.invincible = true; // Torna o player invencível
         player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
+        player_.radius = 4.8f;
         is_tripled = true;
         specialButton.SetActive(false);
         player_stats.souls = 0f;
@@ -77,10 +82,13 @@ public class SpecialAttack : MonoBehaviour
 
     public void ActivateSpecialAttackMobile()
     {
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         t0 = timer;
         SpecialAudio.Play();
         player_stats.invincible = true; // Torna o player invencível
         player_transform.localScale = originalScale * size_grow; // Triplica o tamanho do player
+        player_.radius = 4.8f;
         is_tripled = true;
         specialButton.SetActive(false);
         player_stats.souls = 0f;
@@ -92,6 +100,9 @@ public class SpecialAttack : MonoBehaviour
     {
         player_transform.localScale = originalScale; // Retorna ao tamanho original
         player_transform.rotation = originalRotation; // Retorna à rotação original
+        player_.radius = 2f;
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 
         is_tripled = false;
         timer = 0f; // Reinicia o timer

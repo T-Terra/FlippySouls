@@ -23,10 +23,4 @@ public static class UtilsFunc
         }
 
     }
-
-
-
-
-
-
 }
