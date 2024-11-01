@@ -18,4 +18,4 @@ MonoBehaviour:
   hadoukenTime: 0
   darkPowerArea: 0
   timeShield: 1
-  ShieldInterval: 8
+  ShieldInterval: 4

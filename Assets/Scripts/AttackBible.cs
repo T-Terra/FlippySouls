@@ -35,21 +35,23 @@ public class AttackBible : MonoBehaviour
             foreach (Collider2D Enemy in colliderEnemy)
             {
                 Enemies enemyStats = Enemy.gameObject.GetComponent<Enemies>();
-                UtilsFunc.TakeDamage(Enemy.gameObject, StatsPlayer.stats.baseAttack);
+                if(enemyStats != null) {
+                    UtilsFunc.TakeDamage(Enemy.gameObject, StatsPlayer.stats.baseAttack);
 
-                if (enemyStats.stats.hp <= 0)
-                {
-                    if (StatsPlayer.stats.hp < StatsPlayer.stats.maxHP)
+                    if (enemyStats.stats.hp <= 0)
                     {
-                        StatsPlayer.stats.hp += 1f;
-                        StatsPlayer.stats.xp += enemyStats.stats.xp;
-                        HUD.Instance.ExpHandler(StatsPlayer.stats.xp);
-                        HUD.Instance.HpAdd(StatsPlayer.stats.hp);
+                        if (StatsPlayer.stats.hp < StatsPlayer.stats.maxHP)
+                        {
+                            StatsPlayer.stats.hp += 1f;
+                            StatsPlayer.stats.xp += enemyStats.stats.xp;
+                            HUD.Instance.ExpHandler(StatsPlayer.stats.xp);
+                            HUD.Instance.HpAdd(StatsPlayer.stats.hp);
 
-                    }
-                    else if (StatsPlayer.stats.hp > StatsPlayer.stats.maxHP)
-                    {
-                        StatsPlayer.stats.hp = StatsPlayer.stats.maxHP;
+                        }
+                        else if (StatsPlayer.stats.hp > StatsPlayer.stats.maxHP)
+                        {
+                            StatsPlayer.stats.hp = StatsPlayer.stats.maxHP;
+                        }
                     }
                 }
             }

@@ -130,23 +130,25 @@ public class PlayerMovement : MonoBehaviour
                 foreach (Collider2D Enemy in colliderEnemy)
                 {
                     Enemies enemyStats = Enemy.gameObject.GetComponent<Enemies>();
-                    UtilsFunc.TakeDamage(Enemy.gameObject, stats.baseAttack);
+                    if(enemyStats != null) {
+                        UtilsFunc.TakeDamage(Enemy.gameObject, stats.baseAttack);
 
-                    if (enemyStats.stats.hp <= 0)
-                    {
-                        if (stats.hp < stats.maxHP)
+                        if (enemyStats.stats.hp <= 0)
                         {
-                            stats.hp += 5;
-                            stats.xp += enemyStats.stats.xp;
-                            HUD.Instance.ExpHandler(stats.xp);
-                            HUD.Instance.HpAdd(stats.hp);
+                            if (stats.hp < stats.maxHP)
+                            {
+                                stats.hp += 5;
+                                stats.xp += enemyStats.stats.xp;
+                                HUD.Instance.ExpHandler(stats.xp);
+                                HUD.Instance.HpAdd(stats.hp);
 
+                            }
+                            else if (stats.hp > stats.maxHP)
+                            {
+                                stats.hp = stats.maxHP;
+                            }
                         }
-                        else if (stats.hp > stats.maxHP)
-                        {
-                            stats.hp = stats.maxHP;
-                        }
-                    }
+                    }   
                 }
             }
         }

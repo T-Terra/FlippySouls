@@ -29,13 +29,11 @@ public class SpellPlayer : MonoBehaviour
     }
 
     private void Attack() {
-        Collider2D[] colliderEnemy = Physics2D.OverlapCircleAll(this.PointAttack.position, this.radiusB, this.LayerAttack);
+        Collider2D colliderEnemy = Physics2D.OverlapCircle(this.PointAttack.position, this.radiusB, this.LayerAttack);
         if(colliderEnemy != null) {
-
-            foreach (Collider2D Enemy in colliderEnemy)
-            {
-                Enemies enemyStats = Enemy.gameObject.GetComponent<Enemies>();
-                UtilsFunc.TakeDamage(Enemy.gameObject, StatsPlayer.stats.baseAttack);
+            Enemies enemyStats = colliderEnemy.gameObject.GetComponent<Enemies>();
+            if(enemyStats != null) {
+                UtilsFunc.TakeDamage(colliderEnemy.gameObject, StatsPlayer.stats.baseAttack);
 
                 if (enemyStats.stats.hp <= 0)
                 {
@@ -53,7 +51,7 @@ public class SpellPlayer : MonoBehaviour
                     }
                     Destroy(gameObject, 0.5f);
                 }
-            }
+            }   
         }
     }
 }

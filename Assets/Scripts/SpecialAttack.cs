@@ -107,6 +107,8 @@ public class SpecialAttack : MonoBehaviour
             player_.radius = 2.3f;
         } else if (player_.stats.levelFoice == 3) {
             player_.radius = 2.5f;
+        } else {
+            player_.radius = 2f;
         }
         this.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;

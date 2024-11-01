@@ -22,6 +22,8 @@ public class PowerUpManager : MonoBehaviour
     private PowerUpCards newPowerUp;
     public SkillsManager SkillManager;
     public GameObject AtivateSkill;
+    public ShieldManager ShieldManager;
+    public GameObject ActiveShield;
     public int SelectedSkill;
     private void Awake() {
         if(Instance != null) {
@@ -250,6 +252,15 @@ public class PowerUpManager : MonoBehaviour
     }
 
     private void ShieldPower( float timeShield, float shieldInterval ) {
-        Player.stats.levelShield += 1;
+        if(Player.stats.levelShield <= 3) {
+            Player.stats.levelShield += 1;
+        }
+
+        if(Player.stats.levelShield == 1) {
+            ActiveShield.SetActive(true);
+        }
+
+        ShieldManager.newInterval = shieldInterval;
+        ShieldManager.newtimeActive = timeShield;
     }
 }
