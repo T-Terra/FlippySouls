@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         specialButtonActivate();
         if(stats.xp >= xpMax) {
-            OnActivatedPowerUp?.Invoke();
+            //OnActivatedPowerUp?.Invoke();
             xpMax += 200;
             stats.xp = 0;
         }
