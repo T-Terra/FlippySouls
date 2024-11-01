@@ -32,6 +32,8 @@ public class Enemies : MonoBehaviour
     private Color originalColor;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerStats = player.GetComponent<PlayerMovement>().stats;
         originalColor = gameObject.GetComponent<SpriteRenderer>().color;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -40,12 +42,10 @@ public class Enemies : MonoBehaviour
 
         if (gameObject.CompareTag("Tank") || gameObject.CompareTag("Stalker"))
         {
-            player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
                 target = player.transform.position;
                 direction = ((target - (Vector2)transform.position).normalized) * stats.speed;
-                playerStats = player.GetComponent<PlayerMovement>().stats;
             }
             else
             {
@@ -61,8 +61,8 @@ public class Enemies : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Stats playerStats = collision.gameObject.GetComponent<PlayerMovement>().stats;
-            if (!playerStats.invincible)
+            PlayerMovement playerStats = collision.gameObject.GetComponent<PlayerMovement>();
+            if (!playerStats.stats.invincible)
             {
                 UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
             }
@@ -82,7 +82,7 @@ public class Enemies : MonoBehaviour
             {
                 case "Medusa":
                     float range = 3f; // Amplitude do zig-zag
-                    float zigZagFrequency = 3f; // Frequência fixa do zig-zag
+                    float zigZagFrequency = 3f; // Frequï¿½ncia fixa do zig-zag
                     float zigZagMoviment = Mathf.Sin(Time.time * zigZagFrequency) * range;
 
                     rb.velocity = new Vector2(-stats.speed, zigZagMoviment);
@@ -128,7 +128,7 @@ public class Enemies : MonoBehaviour
             }
         }
 
-        //Verificação de cooldown
+        //Verificaï¿½ï¿½o de cooldown
         if (time < stats.attackSpeed)
         {
             canAttack = false;
@@ -149,7 +149,8 @@ public class Enemies : MonoBehaviour
 
     IEnumerator DeathSequence()
     {
-        death = true;  // Marque que o inimigo está em processo de morte
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        death = true;  // Marque que o inimigo estï¿½ em processo de morte
 
         float retreatTime = 0.5f;
         float elapsedTime = 0;
@@ -162,7 +163,7 @@ public class Enemies : MonoBehaviour
             yield return null;
         }
 
-        // Pare o movimento após o recuo
+        // Pare o movimento apï¿½s o recuo
         rb.velocity = Vector2.zero;
 
         // Drop do item
@@ -187,5 +188,4 @@ public class Enemies : MonoBehaviour
         yield return new WaitForSeconds(duration);
         spriteRenderer.color = originalColor; // Restaura a cor original
     }
-
 }

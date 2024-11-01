@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4978171287985564994}
   - component: {fileID: 1903562850782308006}
   - component: {fileID: 4414097814869228484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BaseEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,11 @@ MonoBehaviour:
     souls: 0
     xp: 0
     maxXp: 0
-    level: 0
+    levelBible: 0
+    levelHadounken: 0
+    levelIma: 0
+    levelFoice: 0
+    levelShield: 0
   projectile: {fileID: 6415383359609065554, guid: 3ba74fafe40d188438f5c86f7951b56c, type: 3}
   soul: {fileID: 4918788051711360330, guid: 99057d181694f8a44b0ac9f8de1bc452, type: 3}
   enemyDataList: []

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4447e22fb15fbdb4e9735e05a6bdf032, type: 3}
   m_Name: foiceLv1
   m_EditorClassIdentifier: 
-  ID: 4
+  ID: 2
   spriteRender: {fileID: 21300000, guid: e95648ffcf17c8542be9a2a7f576fa1d, type: 3}
   bibleTotal: 0
   hadoukenTime: 0
-  darkPowerArea: 1
+  darkPowerArea: 2.1
   timeShield: 0
   ShieldInterval: 0

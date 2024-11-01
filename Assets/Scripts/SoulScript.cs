@@ -5,7 +5,9 @@ using UnityEngine;
 public class SoulScript : MonoBehaviour
 {
     HUD hud;
-
+    private void Start() {
+        Destroy(gameObject, 10f);
+    }
     void Update()
     {
         transform.position += Vector3.left * 2 * Time.deltaTime;
@@ -18,7 +20,6 @@ public class SoulScript : MonoBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if(player.stats.souls < 100) {
                 player.stats.souls += 20;
-                HUD.Instance.ExpHandler(20);
                 HUD.Instance.SoulsHandler(player.stats.souls);
             }
             //  hud.SoulsHandler(player.stats.souls);

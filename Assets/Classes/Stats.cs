@@ -18,10 +18,14 @@ public class Stats
 
     public float xp = 0;
     public float maxXp = 0;
-    public float level = 0;
+    public float levelBible = 0;
+    public float levelHadounken = 0;
+    public float levelIma = 0;
+    public float levelFoice = 0;
+    public float levelShield= 0;
 
     public Stats Clone()
     {
-        return (Stats)this.MemberwiseClone(); // Cria uma cópia rasa da classe Stats
+        return (Stats)this.MemberwiseClone(); // Cria uma cï¿½pia rasa da classe Stats
     }
 }

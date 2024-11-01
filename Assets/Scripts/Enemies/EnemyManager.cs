@@ -68,10 +68,7 @@ public class EnemyManager : MonoBehaviour
             GameObject enemy = Instantiate(enemyBase, spawnPosition, Quaternion.identity);
             if (enemyData != null)
             {
-                if (enemyData.id != "Default")
-                {
-                    enemy.tag = enemyData.id;
-                }
+                enemy.tag = enemyData.id;
 
                 enemy.GetComponent<Enemies>().stats = enemyData.stats.Clone();
                 enemy.GetComponent<SpriteRenderer>().sprite = enemyData.sprite;

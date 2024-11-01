@@ -22,9 +22,9 @@ public class SpellScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(damage);
         if(collision.gameObject.tag == "Player")
         {
+            Debug.Log(damage);
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if (!player.stats.invincible)
             {

@@ -23,7 +23,11 @@ MonoBehaviour:
     speed: 7
     invincible: 0
     souls: 0
-    xp: 15
+    xp: 10
     maxXp: 0
-    level: 0
+    levelBible: 0
+    levelHadounken: 0
+    levelIma: 0
+    levelFoice: 0
+    levelShield: 0
   sprite: {fileID: 21300000, guid: 2f216197e8d7c6544bbe20a71691ecb6, type: 3}

@@ -17,5 +17,5 @@ MonoBehaviour:
   bibleTotal: 0
   hadoukenTime: 0
   darkPowerArea: 0
-  timeShield: 1
-  ShieldInterval: 8
+  timeShield: 2
+  ShieldInterval: 4

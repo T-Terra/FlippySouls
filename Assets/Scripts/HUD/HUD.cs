@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,16 +33,24 @@ public class HUD : MonoBehaviour
 
     public void ExpHandler( float points = 10 ) {
         if(xp.value == xp.maxValue) {
-            //Time.timeScale = 0;
-            //PowerUpScreen.SetActive(true);
             xp.value = 0;
+            xp.maxValue += 200;
         }
-        xp.value += points;
+        xp.value = points;
     }
 
-    public void HpHandler( float time = 6 ) {
+    public void HpHandler( float time = 5) {
+        /*if(Time.time > 60) {
+            time = 10;
+        }*/
         hp.value -= Time.deltaTime * time;
+        player.GetComponent<PlayerMovement>().stats.hp -= Time.deltaTime * time;
+        
         if(hp.value == hp.minValue) {
+            hp.value = hp.maxValue;
+        }
+        
+        if(player.GetComponent<PlayerMovement>().stats.hp <= hp.minValue) {
             Time.timeScale = 0;
             ResultsScreen.SetActive(true);
             metersDistanceResults.text = (meters).ToString("F0");
@@ -52,8 +61,6 @@ public class HUD : MonoBehaviour
             } else if (PlayerPrefs.GetFloat("high") < meters) {
                 PlayerPrefs.SetFloat("high", meters);
             }
-        } else {
-            player.GetComponent<PlayerMovement>().stats.hp = hp.value;
         }
     }
 

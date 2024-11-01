@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public delegate void ActivePowerUp();
+    public event ActivePowerUp OnActivatedPowerUp;
     public Stats stats;
     public GameObject player;
     public float jumpForce = 5f;
@@ -17,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private Color originalColor;
     public AudioSource JumpAudio;
     public GameObject specialButton;
+    public Transform PointAttack;
+    public float radius;
+    public LayerMask LayerAttack;
+    public AudioSource AudioLevelUp;
+    private float xpMax = 100;
 
     void Start()
     {
@@ -35,16 +42,19 @@ public class PlayerMovement : MonoBehaviour
             JumpAudio.Play();
         }
 
-        if (stats.hp <= 0)
-        {
-            Destroy(gameObject);
-        }
         specialButtonActivate();
+        if(stats.xp >= xpMax) {
+            AudioLevelUp.Play();
+            OnActivatedPowerUp?.Invoke();
+            xpMax += 200;
+            stats.xp = 0;
+        }
     }
 
     private void Jump()
     {
         is_jumping = true;
+        Attack();
         rb.velocity = Vector2.up * jumpForce; // Define a velocidade do pulo
         StartCoroutine(PerformFlip());
     }
@@ -71,68 +81,6 @@ public class PlayerMovement : MonoBehaviour
             stats.invincible = false;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier" && collision.gameObject.tag != "Soul")
-        {
-            if (is_jumping)
-            {
-                Stats enemyStats = collision.gameObject.GetComponent<Enemies>().stats;
-                UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
-
-                if (enemyStats.hp <= 0)
-                {
-                    if (stats.hp < stats.maxHP)
-                    {
-                        stats.hp += 10;
-                        HUD.Instance.HpAdd(stats.hp);
-                      //  HUD.Instance.ExpHandler(enemyStats.xp);
-
-                    }
-                    else if (stats.hp > stats.maxHP)
-                    {
-                        stats.hp = stats.maxHP;
-                    }
-                }
-            }
-
-        }
-        else if (collision.gameObject.CompareTag("Barrier"))
-        {
-            Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "Tank")
-        {
-            StartCoroutine(back(collision.gameObject));
-        }
-    }
-
-    /*private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag != "Spell" && collision.gameObject.tag != "Barrier" && collision.gameObject.tag != "Soul")
-        {
-            if (is_jumping)
-            {
-                Stats enemyStats = collision.gameObject.GetComponent<Enemies>().stats;
-
-                // Aplica dano ao inimigo
-                UtilsFunc.TakeDamage(collision.gameObject, stats.baseAttack);
-
-                // Verifica se o inimigo morreu
-                if (enemyStats.hp <= 0)
-                {
-                    // Regenera a vida do jogador se o HP estiver abaixo do máximo
-                    if (stats.hp < stats.maxHP)
-                    {
-                        stats.hp += 10;  // Adicionei um log aqui para verificar a cura
-                        HUD.Instance.HpAdd(stats.hp);
-                       // HUD.Instance.ExpHandler(enemyStats.xp);
-                    }
-                }
-            }
-        }
-    }*/
 
     public void ChangeToWhiteTemporarily(float duration)
     {
@@ -169,4 +117,42 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnDrawGizmos() {
+        if(this.PointAttack != null) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(this.PointAttack.position, this.radius);
+        }
+    }
+
+    private void Attack() {
+        Collider2D[] colliderEnemy = Physics2D.OverlapCircleAll(this.PointAttack.position, this.radius, this.LayerAttack);
+        if(colliderEnemy != null) {
+            if (is_jumping)
+            {
+                foreach (Collider2D Enemy in colliderEnemy)
+                {
+                    Enemies enemyStats = Enemy.gameObject.GetComponent<Enemies>();
+                    if(enemyStats != null) {
+                        UtilsFunc.TakeDamage(Enemy.gameObject, stats.baseAttack);
+
+                        if (enemyStats.stats.hp <= 0)
+                        {
+                            if (stats.hp < stats.maxHP)
+                            {
+                                stats.hp += 5;
+                                stats.xp += enemyStats.stats.xp;
+                                HUD.Instance.ExpHandler(stats.xp);
+                                HUD.Instance.HpAdd(stats.hp);
+
+                            }
+                            else if (stats.hp > stats.maxHP)
+                            {
+                                stats.hp = stats.maxHP;
+                            }
+                        }
+                    }   
+                }
+            }
+        }
+    }
 }
