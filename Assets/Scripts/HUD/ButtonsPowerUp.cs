@@ -4,8 +4,12 @@ using UnityEngine.UI;
 
 public class ButtonsPowerUp : MonoBehaviour
 {
+    public Button[] Buttons;
     private void Start() {
-        this.gameObject.GetComponent<Button>().onClick.AddListener(DesactiveButton);
+        foreach (Button button in Buttons)
+        {
+            button.onClick.AddListener(DesactiveButton);
+        }
     }
 
     void Update()
@@ -13,11 +17,17 @@ public class ButtonsPowerUp : MonoBehaviour
         // Verifica se o mouse foi clicado ou se houve um toque na tela
         if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
         {
-            this.gameObject.GetComponent<Button>().interactable = true; // Ativa o botão
+            foreach (Button button in Buttons)
+            {
+                button.interactable = true;
+            }
         }
     }
 
     private void DesactiveButton() {
-        this.gameObject.GetComponent<Button>().interactable = false;
+        foreach (Button button in Buttons)
+        {
+            button.interactable = false;
+        }
     }
 }

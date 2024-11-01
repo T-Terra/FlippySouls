@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 8637693}
   - component: {fileID: 8637692}
   - component: {fileID: 8637691}
-  - component: {fileID: 8637694}
   m_Layer: 0
   m_Name: ButtonPowerUp
   m_TagString: Untagged
@@ -256,18 +255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8637689}
   m_CullTransparentMesh: 1
---- !u!114 &8637694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8637689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &123824611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3588,6 +3575,8 @@ MonoBehaviour:
   - {fileID: 2125860545}
   - {fileID: 280246503}
   - {fileID: 995820954}
+  SkillManager: {fileID: 1575571816}
+  AtivateSkill: {fileID: 1575571815}
   SelectedSkill: 0
 --- !u!4 &1028634062
 Transform:
@@ -4527,6 +4516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1396029434}
   - component: {fileID: 1396029435}
+  - component: {fileID: 1396029436}
   m_Layer: 0
   m_Name: CardsPowerUp
   m_TagString: Untagged
@@ -4582,6 +4572,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1396029436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396029433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Buttons:
+  - {fileID: 8637691}
+  - {fileID: 1740367319}
+  - {fileID: 2111200127}
 --- !u!1 &1410657310
 GameObject:
   m_ObjectHideFlags: 0
@@ -5280,6 +5286,53 @@ RectTransform:
   m_AnchoredPosition: {x: -23.966125, y: -7.174}
   m_SizeDelta: {x: -442.737, y: -30.53}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1575571815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575571817}
+  - component: {fileID: 1575571816}
+  m_Layer: 0
+  m_Name: SkillsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1575571816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575571815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 427bc6d93ae16fa49ab8a1828aad015c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeInterval: 8
+  newInterval: 8
+  Spell: {fileID: 2268220998366450912, guid: c3746a2230d9cab4cb24f074725b7ee8, type: 3}
+--- !u!4 &1575571817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575571815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5644002, y: 0.33335721, z: 0.013649896}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597163705
 GameObject:
   m_ObjectHideFlags: 0
@@ -5694,7 +5747,6 @@ GameObject:
   - component: {fileID: 1740367321}
   - component: {fileID: 1740367320}
   - component: {fileID: 1740367319}
-  - component: {fileID: 1740367322}
   m_Layer: 0
   m_Name: ButtonPowerUp (1)
   m_TagString: Untagged
@@ -5816,18 +5868,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740367317}
   m_CullTransparentMesh: 1
---- !u!114 &1740367322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740367317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1877641401
 GameObject:
   m_ObjectHideFlags: 0
@@ -6479,7 +6519,6 @@ GameObject:
   - component: {fileID: 2111200129}
   - component: {fileID: 2111200128}
   - component: {fileID: 2111200127}
-  - component: {fileID: 2111200130}
   m_Layer: 0
   m_Name: ButtonPowerUp (2)
   m_TagString: Untagged
@@ -6601,18 +6640,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111200125}
   m_CullTransparentMesh: 1
---- !u!114 &2111200130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111200125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234d09dd380c83546b2a7eb5581a6f8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2125860545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1718738362605249079, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
@@ -6762,6 +6789,7 @@ SceneRoots:
   - {fileID: 150570117}
   - {fileID: 303706169}
   - {fileID: 2081744944}
+  - {fileID: 1575571817}
   - {fileID: 470207968}
   - {fileID: 1079138571}
   - {fileID: 650826853}

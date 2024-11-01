@@ -1,27 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBible : MonoBehaviour
+public class SpellPlayer : MonoBehaviour
 {
-    public int damageBible;
+    Rigidbody2D rb;
+    public float speed;
+    public int damage;
     private PlayerMovement StatsPlayer;
     public LayerMask LayerAttack;
     public Transform PointAttack;
     public float radiusB = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        StatsPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-    }
 
-    // Update is called once per frame
+    private void Start() {
+        rb = GetComponent<Rigidbody2D>();
+        StatsPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        Destroy(gameObject, 10);
+    }
     void Update()
     {
+        rb.velocity = new Vector2(speed, 0);
         Attack();
     }
 
-    private void OnDrawGizmos() {
+     private void OnDrawGizmos() {
         if(this.PointAttack != null) {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(this.PointAttack.position, this.radiusB);
@@ -41,16 +41,17 @@ public class AttackBible : MonoBehaviour
                 {
                     if (StatsPlayer.stats.hp < StatsPlayer.stats.maxHP)
                     {
-                        StatsPlayer.stats.hp += 1f;
+                        StatsPlayer.stats.hp += 5f;
                         StatsPlayer.stats.xp += enemyStats.stats.xp;
                         HUD.Instance.ExpHandler(StatsPlayer.stats.xp);
                         HUD.Instance.HpAdd(StatsPlayer.stats.hp);
-
                     }
                     else if (StatsPlayer.stats.hp > StatsPlayer.stats.maxHP)
                     {
                         StatsPlayer.stats.hp = StatsPlayer.stats.maxHP;
+                        
                     }
+                    Destroy(gameObject, 0.5f);
                 }
             }
         }

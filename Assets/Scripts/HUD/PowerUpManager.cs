@@ -20,6 +20,8 @@ public class PowerUpManager : MonoBehaviour
     public GameObject[] bibleObj;
     private PlayerMovement Player;
     private PowerUpCards newPowerUp;
+    public SkillsManager SkillManager;
+    public GameObject AtivateSkill;
     public int SelectedSkill;
     private void Awake() {
         if(Instance != null) {
@@ -228,7 +230,11 @@ public class PowerUpManager : MonoBehaviour
     }
 
     private void HadounkenPower( float time ) {
-        Player.stats.levelHadounken += 1;
+        AtivateSkill.SetActive(true);
+        SkillManager.newInterval = time;
+        if(Player.stats.levelHadounken < 3) {
+            Player.stats.levelHadounken += 1;
+        }   
     }
 
     private void ImaPower() {
