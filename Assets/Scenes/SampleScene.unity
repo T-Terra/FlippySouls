@@ -3554,18 +3554,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea7f09e35a8ccd741910ab45bf3487a9, type: 2}
   - {fileID: 11400000, guid: 7559066e3e0f35e4c816e4697d618240, type: 2}
   - {fileID: 11400000, guid: c214999488d166d409f419d7c3353757, type: 2}
-  PowerUpIma:
-  - {fileID: 11400000, guid: 75d02dc9c776f0048b47123a26478e3a, type: 2}
-  - {fileID: 11400000, guid: 3960dcbb4b786bc488c3b831a51f0af3, type: 2}
-  - {fileID: 11400000, guid: dfd9c1f792afd9a4182ebd45e7b08651, type: 2}
+  PowerUpIma: []
   PowerUpFoice:
   - {fileID: 11400000, guid: 38233426f271d0348b5cdd77ff44f8b4, type: 2}
   - {fileID: 11400000, guid: 7c162f595f0c7c04185fb1a9d1f17753, type: 2}
   - {fileID: 11400000, guid: 6773f637dd129d14eba1507698607d03, type: 2}
-  PowerUpShield:
-  - {fileID: 11400000, guid: afd48effc473b834a92bc4622693ff51, type: 2}
-  - {fileID: 11400000, guid: 35cff0d1f4fc26d4e9cae6facf31176e, type: 2}
-  - {fileID: 11400000, guid: 695b20b46b931814283d5b929cd0243d, type: 2}
+  PowerUpShield: []
   CardsPowerUp:
   - {fileID: 8637689}
   - {fileID: 1740367317}
@@ -6738,8 +6732,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 405809945}
     - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+      propertyPath: stats.levelIma
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+      propertyPath: stats.levelBible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+      propertyPath: stats.levelFoice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: LayerAttack.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+      propertyPath: stats.levelHadounken
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6804891961197677316, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
       propertyPath: m_LocalPosition.x

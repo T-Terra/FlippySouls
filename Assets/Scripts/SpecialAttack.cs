@@ -100,7 +100,14 @@ public class SpecialAttack : MonoBehaviour
     {
         player_transform.localScale = originalScale; // Retorna ao tamanho original
         player_transform.rotation = originalRotation; // Retorna à rotação original
-        player_.radius = 2f;
+        
+        if(player_.stats.levelFoice == 1) {
+            player_.radius = 2.1f;
+        } else if (player_.stats.levelFoice == 2) {
+            player_.radius = 2.3f;
+        } else if (player_.stats.levelFoice == 3) {
+            player_.radius = 2.5f;
+        }
         this.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 

@@ -69,7 +69,7 @@ public class PowerUpManager : MonoBehaviour
             // Verifica se o ID do novo PowerUp já está presente na lista
             bool idExists = PowerUpAttributes.Any(powerUp => powerUp.ID == newPowerUp.ID);
         
-            if (!idExists) {
+            if (!idExists && newPowerUp != null) {
                 PowerUpAttributes.Add(newPowerUp);
 
                 CardsPowerUp[i].GetComponent<Image>().sprite = PowerUpAttributes[i].spriteRender;
@@ -226,13 +226,14 @@ public class PowerUpManager : MonoBehaviour
             Player.stats.levelBible += 1;
         } else if (total == 3) {
             bibleObj[2].SetActive(true);
+            Player.stats.levelBible += 1;
         }
     }
 
     private void HadounkenPower( float time ) {
         AtivateSkill.SetActive(true);
         SkillManager.newInterval = time;
-        if(Player.stats.levelHadounken < 3) {
+        if(Player.stats.levelHadounken <= 3) {
             Player.stats.levelHadounken += 1;
         }   
     }
@@ -242,7 +243,10 @@ public class PowerUpManager : MonoBehaviour
     }
 
     private void FoicePower( float area ) {
-        Player.stats.levelFoice += 1;
+        Player.radius = area;
+        if(Player.stats.levelFoice <= 3) {
+            Player.stats.levelFoice += 1;
+        }
     }
 
     private void ShieldPower( float timeShield, float shieldInterval ) {

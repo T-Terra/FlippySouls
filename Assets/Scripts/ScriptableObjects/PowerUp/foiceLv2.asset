@@ -16,6 +16,6 @@ MonoBehaviour:
   spriteRender: {fileID: 21300000, guid: 6b37e99a92a4e5847a7418b631ab609a, type: 3}
   bibleTotal: 0
   hadoukenTime: 0
-  darkPowerArea: 2
+  darkPowerArea: 2.3
   timeShield: 0
   ShieldInterval: 0
