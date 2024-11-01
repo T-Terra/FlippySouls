@@ -25,6 +25,7 @@ public class PowerUpManager : MonoBehaviour
     public ShieldManager ShieldManager;
     public GameObject ActiveShield;
     public int SelectedSkill;
+    public AudioSource AudioSelectPower;
     private void Awake() {
         if(Instance != null) {
             Destroy(gameObject);
@@ -78,7 +79,7 @@ public class PowerUpManager : MonoBehaviour
                 i++;
             }
 
-            if(PowerUpAttributes.Count == 3) {
+            if(PowerUpAttributes.Count <= 3) {
                 PowerUpScreen.SetActive(true);
                 Time.timeScale = 0;
             }
@@ -129,6 +130,7 @@ public class PowerUpManager : MonoBehaviour
 
     public void SelectPower( int Item ) {
         if(PowerUpAttributes.Count != 0) {
+            AudioSelectPower.Play();
             SelectSkill(PowerUpAttributes[Item]);
             StartCoroutine(CleanList(PowerUpAttributes[Item]));
             PowerUpAttributes.Clear();

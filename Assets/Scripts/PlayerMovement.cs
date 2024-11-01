@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform PointAttack;
     public float radius;
     public LayerMask LayerAttack;
+    public AudioSource AudioLevelUp;
     private float xpMax = 100;
 
     void Start()
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
         specialButtonActivate();
         if(stats.xp >= xpMax) {
+            AudioLevelUp.Play();
             OnActivatedPowerUp?.Invoke();
             xpMax += 200;
             stats.xp = 0;

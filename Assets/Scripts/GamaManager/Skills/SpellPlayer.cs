@@ -49,7 +49,7 @@ public class SpellPlayer : MonoBehaviour
                         StatsPlayer.stats.hp = StatsPlayer.stats.maxHP;
                         
                     }
-                    Destroy(gameObject, 0.5f);
+                    Destroy(gameObject);
                 }
             }   
         }
