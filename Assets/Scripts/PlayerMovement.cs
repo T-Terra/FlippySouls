@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         if(stats.xp >= xpMax) {
             AudioLevelUp.Play();
             OnActivatedPowerUp?.Invoke();
-            xpMax += 200;
+            xpMax += 100;
             stats.xp = 0;
         }
     }
