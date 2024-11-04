@@ -9,6 +9,7 @@
 - [Visão Geral](#visão-geral)
 - [Capturas de Tela](#capturas-de-tela)
 - [Como Jogar](#como-jogar)
+- [Acesso ao Jogo](#acesso-jogo)
 
 ## Visão Geral
 
@@ -27,10 +28,14 @@ Mate os inimigos para adquirir XP e habilidades, colete suas almas para adiquiri
 |-------------------------------------------------|------------------------------------------------|
 | ![Coleta de Almas](Assets/Arte/img/VDxw6T.png) | ![Pontuação](Assets/Arte/img/high2.png)            |
 
-# Como Jogar
+## Como Jogar
 
 - **Espaço / Clique**: Pula e Ataca;
 
 - **R**: Especial;
 
 - **ESC**: Pausa o jogo;
+
+# Acesso ao Jogo
+
+Acesse o [itch.io para jogar](https://deliryun.itch.io/flippy-souls) e deixe seu feedback nos comentários.
