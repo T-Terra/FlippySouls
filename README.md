@@ -9,7 +9,7 @@
 - [Visão Geral](#visão-geral)
 - [Capturas de Tela](#capturas-de-tela)
 - [Como Jogar](#como-jogar)
-- [Acesso ao Jogo](#acesso-jogo)
+- [Acesso ao Jogo](#acesso-ao-jogo)
 
 ## Visão Geral
 
@@ -38,4 +38,4 @@ Mate os inimigos para adquirir XP e habilidades, colete suas almas para adiquiri
 
 # Acesso ao Jogo
 
-Acesse o [itch.io para jogar](https://deliryun.itch.io/flippy-souls) e deixe seu feedback nos comentários.
+Acesse o <a href="https://deliryun.itch.io/flippy-souls" target="_blank">itch.io para jogar</a> e deixe seu feedback nos comentários.
