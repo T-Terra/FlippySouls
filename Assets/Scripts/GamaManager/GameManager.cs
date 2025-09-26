@@ -6,10 +6,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
     public GameObject PauseScreen;
     public AudioSource GameplayAudio;
-    private void Awake() {
-        if(Instance != null) {
+    public float meters = 0;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
             Destroy(gameObject);
-        } else {
+        }
+        else
+        {
             Instance = this;
         }
 
@@ -21,11 +26,18 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             PauseScreen.SetActive(true);
         }
-        HUD.Instance.MetersHandler();
+        MetersHandler();
         HUD.Instance.HpHandler();
     }
 
-    public void PauseGameMobile() {
+    public void MetersHandler(int RateMeters = 10)
+    {
+        meters += Time.deltaTime * RateMeters;
+        HUD.Instance.ShowMeters();
+    }
+
+    public void PauseGameMobile()
+    {
         Time.timeScale = 0;
         PauseScreen.SetActive(true);
     }

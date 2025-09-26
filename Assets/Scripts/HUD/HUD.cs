@@ -7,7 +7,6 @@ public class HUD : MonoBehaviour
 {
     public static HUD Instance {get; set;}
 
-    public float meters;
     public Slider hp;
     public Slider xp;
     public TMP_Text souls;
@@ -53,13 +52,13 @@ public class HUD : MonoBehaviour
         if(player.GetComponent<PlayerMovement>().stats.hp <= hp.minValue) {
             Time.timeScale = 0;
             ResultsScreen.SetActive(true);
-            metersDistanceResults.text = (meters).ToString("F0");
+            metersDistanceResults.text = GameManager.Instance.meters.ToString("F0");
 
             // save high score
             if (!PlayerPrefs.HasKey("high")) {
-                PlayerPrefs.SetFloat("high", meters);
-            } else if (PlayerPrefs.GetFloat("high") < meters) {
-                PlayerPrefs.SetFloat("high", meters);
+                PlayerPrefs.SetFloat("high", GameManager.Instance.meters);
+            } else if (PlayerPrefs.GetFloat("high") < GameManager.Instance.meters) {
+                PlayerPrefs.SetFloat("high", GameManager.Instance.meters);
             }
         }
     }
@@ -72,9 +71,8 @@ public class HUD : MonoBehaviour
         hp.value = newHp;
     }
 
-    public void MetersHandler( int RateMeters = 10 ) {
-        meters += Time.deltaTime * RateMeters;
-        metersDistance.text = (meters).ToString("F0") + "M";
+    public void ShowMeters() {
+        metersDistance.text = GameManager.Instance.meters.ToString("F0") + "M";
     }
 
     public void SoulsHandler( float soulsColleted = 0) {
