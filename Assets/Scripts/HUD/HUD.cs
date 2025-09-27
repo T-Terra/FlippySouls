@@ -67,7 +67,7 @@ public class HUD : MonoBehaviour
         hp.value = newHp;
     }
 
-    public void HpRemove( float newHp ) {
+    public void ShowHp( float newHp ) {
         hp.value = newHp;
     }
 

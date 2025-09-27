@@ -4731,7 +4731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7579191b645764a82befaff91266ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meters: 0
   hp: {fileID: 1203982358}
   xp: {fileID: 1239607283}
   souls: {fileID: 336513189}
@@ -5566,6 +5565,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseScreen: {fileID: 1440701401}
   GameplayAudio: {fileID: 687312028}
+  player: {fileID: 369336653010514759}
+  hud: {fileID: 1374252236}
+  meters: 0
 --- !u!4 &1517314020
 Transform:
   m_ObjectHideFlags: 0
@@ -7157,6 +7159,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa8eda05488f30a4e9ec0ef050d5c3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &369336653010514759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6252836801847737073, guid: 48a0f2df7dca92e4bbd8f8f118a8a82e, type: 3}
+  m_PrefabInstance: {fileID: 369336653010514749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74040a4f4cb116949a9fb0ca05dba65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

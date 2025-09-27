@@ -9,8 +9,7 @@ public static class UtilsFunc
 
         if (stats != null)
         {
-            stats.hp -= damage;
-            HUD.Instance.HpRemove(stats.hp);
+            stats.HpRemove(damage);
         }
 
         if (target.tag != "Player")

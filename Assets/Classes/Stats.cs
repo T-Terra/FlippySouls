@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
 public class Stats
 {
+    public delegate void HealthChanged(float hp);
+    public event HealthChanged OnHealthChanged;
     public float maxHP = 0;
     public float hp = 0;
     public float baseAttack = 0;
@@ -22,10 +25,16 @@ public class Stats
     public float levelHadounken = 0;
     public float levelIma = 0;
     public float levelFoice = 0;
-    public float levelShield= 0;
+    public float levelShield = 0;
 
     public Stats Clone()
     {
         return (Stats)this.MemberwiseClone(); // Cria uma c�pia rasa da classe Stats
+    }
+
+    public void HpRemove(float damage)
+    {
+        hp -= damage;
+        OnHealthChanged?.Invoke(hp);
     }
 }

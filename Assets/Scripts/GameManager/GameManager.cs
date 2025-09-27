@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
     public GameObject PauseScreen;
     public AudioSource GameplayAudio;
+    public PlayerMovement player;
+    public HUD hud;
     public float meters = 0;
     private void Awake()
     {
@@ -21,8 +23,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+    void Start()
+    {
+        player.stats.OnHealthChanged += hud.ShowHp;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             Time.timeScale = 0;
             PauseScreen.SetActive(true);
         }
