@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
+    public delegate void MetersChange();
+    public event MetersChange OnMetersChanged;
     public GameObject PauseScreen;
     public AudioSource GameplayAudio;
     public PlayerMovement player;
@@ -26,6 +28,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player.stats.OnHealthChanged += hud.ShowHp;
+        player.stats.OnXpChanged += hud.ShowXp;
+        OnMetersChanged += hud.ShowMeters;
+    }
+
+    private void OnDestroy()
+    {
+        player.stats.OnHealthChanged -= hud.ShowHp;
+        player.stats.OnXpChanged -= hud.ShowXp;
+        OnMetersChanged -= hud.ShowMeters;
     }
 
     private void Update()
@@ -42,7 +53,7 @@ public class GameManager : MonoBehaviour
     public void MetersHandler(int RateMeters = 10)
     {
         meters += Time.deltaTime * RateMeters;
-        HUD.Instance.ShowMeters();
+        OnMetersChanged?.Invoke();
     }
 
     public void PauseGameMobile()

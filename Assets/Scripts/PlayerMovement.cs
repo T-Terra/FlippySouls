@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
                             {
                                 stats.hp += 5;
                                 stats.xp += enemyStats.stats.xp;
-                                HUD.Instance.ExpHandler(stats.xp);
+                                stats.ExpHandler(stats.xp);
                                 HUD.Instance.HpAdd(stats.hp);
 
                             }

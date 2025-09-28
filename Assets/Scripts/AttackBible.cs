@@ -44,7 +44,7 @@ public class AttackBible : MonoBehaviour
                         {
                             StatsPlayer.stats.hp += 1f;
                             StatsPlayer.stats.xp += enemyStats.stats.xp;
-                            HUD.Instance.ExpHandler(StatsPlayer.stats.xp);
+                            StatsPlayer.stats.ExpHandler(StatsPlayer.stats.xp);
                             HUD.Instance.HpAdd(StatsPlayer.stats.hp);
 
                         }

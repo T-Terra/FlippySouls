@@ -41,7 +41,7 @@ public class SpellPlayer : MonoBehaviour
                     {
                         StatsPlayer.stats.hp += 5f;
                         StatsPlayer.stats.xp += enemyStats.stats.xp;
-                        HUD.Instance.ExpHandler(StatsPlayer.stats.xp);
+                        StatsPlayer.stats.ExpHandler(StatsPlayer.stats.xp);
                         HUD.Instance.HpAdd(StatsPlayer.stats.hp);
                     }
                     else if (StatsPlayer.stats.hp > StatsPlayer.stats.maxHP)

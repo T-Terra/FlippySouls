@@ -69,7 +69,7 @@ public class ShieldManager : MonoBehaviour
                 {
                     PlayerStats.stats.hp += 0.1f;
                     PlayerStats.stats.xp += 5;
-                    HUD.Instance.ExpHandler(PlayerStats.stats.xp);
+                    PlayerStats.stats.ExpHandler(PlayerStats.stats.xp);
                     HUD.Instance.HpAdd(PlayerStats.stats.hp);
 
                 }

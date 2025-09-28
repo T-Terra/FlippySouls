@@ -30,14 +30,6 @@ public class HUD : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public void ExpHandler( float points = 10 ) {
-        if(xp.value == xp.maxValue) {
-            xp.value = 0;
-            xp.maxValue += 100;
-        }
-        xp.value = points;
-    }
-
     public void HpHandler( float time = 5) {
         /*if(Time.time > 60) {
             time = 10;
@@ -75,7 +67,13 @@ public class HUD : MonoBehaviour
         metersDistance.text = GameManager.Instance.meters.ToString("F0") + "M";
     }
 
-    public void SoulsHandler( float soulsColleted = 0) {
+    public void ShowXp( float points )
+    {
+        xp.value = points;
+    }
+
+    public void SoulsHandler(float soulsColleted = 0)
+    {
         souls.text = soulsColleted.ToString();
     }
 }

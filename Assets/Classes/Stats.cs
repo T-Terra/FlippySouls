@@ -8,6 +8,8 @@ public class Stats
 {
     public delegate void HealthChanged(float hp);
     public event HealthChanged OnHealthChanged;
+    public delegate void XpChange(float xp);
+    public event XpChange OnXpChanged;
     public float maxHP = 0;
     public float hp = 0;
     public float baseAttack = 0;
@@ -36,5 +38,13 @@ public class Stats
     {
         hp -= damage;
         OnHealthChanged?.Invoke(hp);
+    }
+
+    public void ExpHandler( float points = 10 ) {
+        if(xp == maxXp) {
+            xp = 0;
+            maxXp += 100;
+        }
+        OnXpChanged?.Invoke(points);
     }
 }
